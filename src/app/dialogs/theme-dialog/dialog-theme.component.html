@@ -1,0 +1,37 @@
+<div class="settings-dialog">
+  <h1 class="text-light" mat-dialog-title><mat-icon>settings</mat-icon> System Settings</h1>
+  <div mat-dialog-content>
+    <!--TODO: Revist docx to implement design pushing behaviour whilst in Collapse Mode-->
+    <mat-slide-toggle
+      fxShow="false"
+      [color]="'primary'"
+      [checked]="collapseSidenavChecked"
+      (change)="toggleCollapseSidenav()">
+      <span *ngIf="collapseSidenavChecked">Expand Side Menu</span>
+      <span *ngIf="!collapseSidenavChecked">Collapse Side Menu</span>
+    </mat-slide-toggle>
+    <mat-divider style="margin-top: 8px; margin-bottom: 8px"></mat-divider>
+    <mat-slide-toggle
+      class="mb-4"
+      [color]="'primary'"
+      [checked]="isDarkTheme"
+      (change)="switchTheme()">
+      <span *ngIf="isDarkTheme">Back to Light theme</span>
+      <span *ngIf="!isDarkTheme">Use Dark Theme</span>
+    </mat-slide-toggle>
+    <mat-card>
+      <button class="fg-amber" mat-stroked-button><span class="fa fa-shield"></span> Configure Application Settings <span class="fa fa-caret-right"></span></button>
+    </mat-card>
+    <!--<mat-card>-->
+      <!--<p class="text-bold"><span class="mif-language"></span> Language</p>-->
+      <!--<mat-select placeholder="Language" [(ngModel)]="appService.getState().darkMode"-->
+                  <!--style="width: 100%;">-->
+        <!--<mat-option [value]="'en'">English(UK)</mat-option>-->
+        <!--&lt;!&ndash;<mat-option [value]="'zh-cn'">zh-cn</mat-option>&ndash;&gt;-->
+      <!--</mat-select>-->
+    <!--</mat-card>-->
+
+    <br>
+  </div>
+</div>
+

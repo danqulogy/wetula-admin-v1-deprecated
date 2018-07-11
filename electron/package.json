@@ -1,0 +1,9 @@
+{
+  "name": "metrostore-backend",
+  "version": "1.0.0",
+  "main": "electron.js",
+  "private": true,
+  "dependencies": {
+
+  }
+}

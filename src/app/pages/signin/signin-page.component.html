@@ -1,0 +1,54 @@
+<div class="page-container ">
+  <div class="background-carousel">
+  </div>
+  <form #loginForm="ngForm" class="foreground-carousel" fxLayout="row" fxLayoutAlign="center horizontal">
+    <mat-card *ngIf="!isSubmitted" class="signin-block-widget">
+      <mat-card-header class="c-default">
+        <mat-card-title class="text-center">
+          <h1 class="text-bold enjoy-css"><small><span class="{{appService.getState().titleColor1}}" style="font-weight: bolder">City</span><span class="{{appService.getState().titleColor2}}">Store</span></small></h1>
+        </mat-card-title>
+        <p class="text-center c-default fg-amber"><span class="mif mif-bookmark"></span> Trial Version &reg;</p>
+      </mat-card-header>
+
+      <mat-divider></mat-divider>
+      <mat-card-header class="mt-4">
+        <p class="c-default text-center text-bold {{appService.getState().titleColor2}}">Modern Store Inventory Management</p>
+      </mat-card-header>
+      <br>
+      <mat-card-content >
+
+        <p class="c-default pb-2 text-center {{appService.getState().titleColor1}}"><span class="mif mif-lock"></span> Sign in to continue</p>
+
+        <div fxLayout="column">
+          <mat-form-field *ngIf="!appService.getState().darkMode">
+            <input matInput type="text" name="email" required [(ngModel)]="email" placeholder="Email Address">
+          </mat-form-field>
+          <input *ngIf="appService.getState().darkMode" type="text" name="email" required [(ngModel)]="email" placeholder="Email Address">
+          <mat-form-field *ngIf="!appService.getState().darkMode">
+            <input matInput type="password" name="password" required [(ngModel)]="password" placeholder="Password">
+          </mat-form-field>
+          <input class="mt-2 mb-2" *ngIf="appService.getState().darkMode" type="password" name="password" required [(ngModel)]="password" placeholder="Password">
+
+          <button *ngIf="!appService.getState().darkMode" mat-flat-button [disabled]="loginForm.invalid" (click)="login()">Log In</button>
+          <button *ngIf="appService.getState().darkMode" mat-button class="bg-amber" [disabled]="loginForm.invalid" (click)="login()">Take off where you left</button>
+          <p class="text-center c-default text-bold">AilenTech Inc. Copyright &copy; 2018</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isSubmitted" class="signin-block-widget">
+      <mat-card-content class="align-center">
+        <p class="text-center"><i class="fg-green fa fa-spinner fa-spin fa-4x"></i></p>
+        <h5 class="text-center fg-darkGreen">Authenticating... Please wait.</h5>
+        <!--<h5 class="text-center fg-darkGreen">While we authenticate your credentials</h5>-->
+        <mat-divider></mat-divider>
+        <br>
+        <p class="text-center text-bold fg-black">AilenTech Inc. Copyright &copy; 2018</p>
+      </mat-card-content>
+
+      <mat-card-footer class="mat-card-footer">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </mat-card-footer>
+    </mat-card>
+  </form>
+</div>
+

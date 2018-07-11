@@ -1,0 +1,18 @@
+//---------------------------------------------------------
+// Core style sheet
+//---------------------------------------------------------
+@import "app/themes/app.theme.bootstrap";
+@import "app/themes/app.theme.material";
+//---------------------------------------------------------
+// Custom style sheet
+// You can write your style sheet in this file,
+// or import 3rd party plugin style sheet here.
+//---------------------------------------------------------
+@import "app/themes/app.theme.custom";
+
+
+
+body { margin: 0; overflow-y: hidden;
+  font-family: "Roboto", "Open Sans", Arial, sans-serif; }
+
+
