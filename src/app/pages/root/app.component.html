@@ -6,7 +6,7 @@
 <!--Application Title-->
   <div>
     <!-- TODO: Design SVG version of the logo-->
-    <!--<img src="assets/img/logo-half-light.svg" *ngIf="appService.getState().sideNavMode === 'side'">-->
+      <img src="assets/img/logo-half-light.svg" height="48px" *ngIf="appService.getState().sideNavMode === 'side'">
     <span class="text-bold"><span class="{{appService.getState().titleColor1}}" style="font-weight: bolder">City</span>
       <span class="{{appService.getState().titleColor2}}">Store</span><sup class="fg-amber">&reg;</sup> </span> |
     <span class="fg-amber"><span fxShow="false" class="fa fa-shield"></span> {{appService.getState().topNavSubTitle}}</span>

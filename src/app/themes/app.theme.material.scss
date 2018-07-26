@@ -217,9 +217,11 @@ mat-sidenav-container {
   }
   mat-sidenav.sidenav-collapse {
     min-width: 0;
+
     div.sidenav-container {
       transition: all .32s;
       width: 48px;
+
       div.mat-list-item-content{
         padding: 0 13px;
       }

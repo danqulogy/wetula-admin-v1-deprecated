@@ -4,7 +4,7 @@ import {AppService} from '../../services/app.service';
 import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {FormControl, Validators, FormGroupDirective, NgForm} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {FormErrorMatcher} from '../../services/error.matcher';
 
 @Component({
@@ -32,6 +32,7 @@ export class SigninPageComponent implements OnInit, OnDestroy {
               private afAuth: AngularFireAuth,
               private router: Router) {
   this.snackBar = _snackBar;
+      appService.getState().sideNavCollapse = false;
     appService.getState().pageFullScreen = true;
     appService.getState().pageFooter = false;
 

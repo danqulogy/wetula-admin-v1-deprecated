@@ -29,24 +29,92 @@
 
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
-</head>
-<body class="light">
   <style>
-    .preloader-container{
+      body {
       overflow: hidden;
-      width: 100vw;
-      display: grid;
-      height: 100vh;
-      background: #f8f8ff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
   </style>
-  <div class="preloader-container">
-      <div class="main">
-        <img src="favicon.ico">
-        <p>Loading Wetula</p>
-      </div>
-  </div>
+</head>
+<body class="light">
+<app-root id="app-shell"></app-root>
+
+<script>
+    (function ($) {
+        var shell = $.getElementById('app-shell');
+        shell.style.display = 'none';
+        shell.style.visibility = 'collapsed';
+
+        var preloaderContainer = $.getElementById('preloader-container');
+
+        start();
+
+        function start() {
+            renderGrayedLogoFrames();
+        }
+
+        function renderGrayedLogoFrames() {
+
+
+            setTimeout(function () {
+                logoElement = $.getElementById('logo');
+                logoElement.src = 'assets/logo_gray.png';
+                logoElement.style.width = 170 + 'px';
+                logoElement.style.height = 250 + 'px';
+                logoElement.classList.add('animate-grayed-logo');
+                logoElement = null;
+
+                renderCircularGrayBounceFrames();
+
+            }, 3000);
+            setTimeout(function () {
+                renderOriginalLogoFrames();
+            }, 5000);
+
+            setTimeout(function () {
+                renderProgressWidget();
+            }, 5500);
+
+            setTimeout(function () {
+                renderProgressReadingFrame();
+            }, 5500);
+
+            setTimeout(function () {
+                shell.style.display = 'block';
+            }, 10000);
+        }
+
+        function renderOriginalLogoFrames() {
+            logoElement = $.getElementById('logo');
+            logoElement.style.visibility = 'visible';
+            logoElement.src = 'assets/logo.png';
+            logoElement.style.width = 170 + 'px';
+            logoElement.style.height = 250 + 'px';
+        }
+
+        function renderCircularGrayBounceFrames() {
+            var circularBounce = $.getElementById('circular-bounce-background');
+            circularBounce.classList.add('animate-circular-grey')
+        }
+
+        function renderProgressWidget() {
+            var widget = $.getElementsByClassName('preloader-item')[1];
+            var text = $.getElementsByClassName('preloader-item')[2];
+            widget.style.visibility = 'visible';
+            text.style.visibility = 'visible';
+
+
+        }
+
+        function renderProgressReadingFrame() {
+            var progressReader = $.getElementById('progress-reading');
+            progressReader.classList.add('animate-progress')
+
+
+        }
+
+
+    }(document));
+</script>
 
 </body>
 </html>

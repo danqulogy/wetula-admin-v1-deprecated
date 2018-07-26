@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../services/app.service';
 
 @Component({
@@ -10,9 +10,11 @@ export class DashboardPageComponent implements OnInit {
 
   constructor(private appService: AppService) {
     this.appService.getState().pageFullScreen = false;
+      this.appService.getState().sideNavCollapse = false;
   }
 
   ngOnInit() {
+
   }
 
 }

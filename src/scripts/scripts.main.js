@@ -22,4 +22,4 @@ Offline.options=  {
   game: true
 };
 
-console.log("It Works")
+console.log("It Works");

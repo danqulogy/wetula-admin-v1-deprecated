@@ -43,9 +43,8 @@ export class AppComponent implements OnInit {
     this.dialog = _dialog;
     this.snackBar = _snackBar;
     this.afAuth = _afAuth;
+      this.appService.getState().sideNavCollapse = true;
     // document.getElementById('menuSideNavbar')['style']['display'] = 'block';
-
-
 
     this.date = new Date();
     setInterval(() => {

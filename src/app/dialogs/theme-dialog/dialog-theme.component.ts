@@ -1,6 +1,6 @@
 ///<reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material';
 import {AppService} from '../../services/app.service';
 
 
@@ -28,9 +28,9 @@ export class DialogThemeComponent implements OnInit {
 
 
   toggleCollapseSidenav() {
-    // this.appService.getState().sideNavCollapse = !this.appService.getState().sideNavCollapse;
-    // this.collapseSidenavChecked = this.appService.getState().sideNavCollapse;
-    // console.log(this.appService.getState().sideNavCollapse);
+      this.appService.getState().sideNavCollapse = !this.appService.getState().sideNavCollapse;
+      this.collapseSidenavChecked = this.appService.getState().sideNavCollapse;
+      console.log(this.appService.getState().sideNavCollapse);
   }
   switchTheme() {
     this.appService.getState().darkMode = !this.appService.getState().darkMode;

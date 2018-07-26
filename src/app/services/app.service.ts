@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {InternalStateType} from '../interfaces/InternalStateType';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class AppService {
   // Set your states default value.
   private state: InternalStateType = {
     currentLoginUser:  null,
-    appName: 'CityStore',
+      appName: 'Wetula',
     darkMode: false,
     initial: false,
     messagePanelOpen: false,
@@ -19,7 +19,7 @@ export class AppService {
     sideNavCollapse: false,
     sideNavMode: 'over',
     sideNavOpen: true,
-    topNavTitle: 'CityStore',
+      topNavTitle: 'Wetula Platform',
     topNavSubTitle: 'Administrative Console',
     titleColor1: 'fg-green',
     titleColor2: 'fg-darkGreen'
