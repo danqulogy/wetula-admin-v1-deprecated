@@ -91,7 +91,6 @@
     "@angular/router": "^6.0.2",
     "@angular/service-worker": "^6.0.2",
     "@types/jquery": "^3.3.2",
-    "angular-locker": "^2.0.5",
     "angular2-universal": "^2.1.0-rc.1",
     "angularfire2": "^5.0.0-rc.10",
     "body-parser": "^1.18.3",
