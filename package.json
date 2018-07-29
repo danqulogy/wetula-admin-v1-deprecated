@@ -16,7 +16,7 @@
         "ng": "ng",
         "sync": "browser-sync http://localhost:4200",
         "standardize": "prettier **/*.ts --write",
-        "start": "npm run standardize && ng serve --port 5000",
+        "start": "npm run standardize && ng serve --port 5000 -o",
         "build": "npm run standardize && ng build",
         "test": "ng test",
         "lint": "ng lint",
