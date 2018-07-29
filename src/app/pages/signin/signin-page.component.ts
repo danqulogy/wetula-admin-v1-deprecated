@@ -36,7 +36,7 @@ export class SigninPageComponent implements OnInit, OnDestroy {
     appService.getState().pageFullScreen = true;
     appService.getState().pageFooter = false;
 
-    this.snackBarRef = this.snackBar.open('You are currently logged out. Please sign in to continue!', 'Done', {duration: 5000});
+    // this.snackBarRef = this.snackBar.open('You are currently logged out. Please sign in to continue!', 'Done', {duration: 5000});
   }
 
   ngOnInit() {

@@ -10,7 +10,7 @@ export class AppService {
   // Set your states default value.
   private state: InternalStateType = {
     currentLoginUser:  null,
-      appName: 'Wetula',
+    appName: 'Wetula',
     darkMode: false,
     initial: false,
     messagePanelOpen: false,

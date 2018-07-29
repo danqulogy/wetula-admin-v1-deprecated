@@ -1,58 +1,67 @@
-.page-container{
-  width: 100%;
-  height: 100%;
-  padding-top: 8%;
-  @media screen and (max-device-width: 480px) {
-    padding-top: 16%;
-  }
-
-  .background-carousel{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #111F2F;
-    background-image: url("/assets/backgrounds/svg_background.svg");
-    background-size: cover;
-  }
+.page-container {
+    width: 100%;
+    height: 100%;
+    padding-top: 8%;
+    @media screen and (max-device-width: 480px) {
+        padding-top: 16%;
+    }
+    .background-carousel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #111F2F;
+        background-image: url("/assets/backgrounds/signin.jpg");
+        background-size: cover;
+    }
 }
 
-.foreground-carousel{
-  z-index: 6000;
-  .signin-block-widget{
-    width: 360px;
-    input[type="text"], input[type="password"]{
-      border: none;
+.foreground-carousel {
+    z-index: 6000;
+    .signin-block-widget {
+        width: 360px;
+        input[type="text"],
+        input[type="password"] {
+            border: none;
+        }
+        @media screen and (max-device-width: 480px) {
+            margin-left: 16px;
+            margin-right: 16px;
+        }
     }
-    @media screen and (max-device-width: 480px) {
-      margin-left: 16px;
-      margin-right: 16px;
-    }
-  }
-
 }
 
 .gradient-pattern {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  width: 160px;
-  height: 160px;
-  border: none;
-  font: normal 100%/normal Arial, Helvetica, sans-serif;
-  color: rgb(251, 255, 115);
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  background: -webkit-linear-gradient(90deg, #8CC158 2px, rgba(0,0,0,0) 2px), -webkit-linear-gradient(0deg, #8CC158 2px, rgba(0,0,0,0) 2px), -webkit-linear-gradient(90deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), -webkit-linear-gradient(0deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), #3A660E;
-  //background: -moz-linear-gradient(0deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), -moz-linear-gradient(90deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), -moz-linear-gradient(0deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), -moz-linear-gradient(90deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), #373737;
-  //background: linear-gradient(0deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), linear-gradient(90deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), linear-gradient(0deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), linear-gradient(90deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), #373737;
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    width: 160px;
+    height: 160px;
+    border: none;
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    color: rgb(251, 255, 115);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    background: -webkit-linear-gradient(90deg, #8CC158 2px, rgba(0, 0, 0, 0) 2px), -webkit-linear-gradient(0deg, #8CC158 2px, rgba(0, 0, 0, 0) 2px), -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.298039) 1px, rgba(0, 0, 0, 0) 1px), -webkit-linear-gradient(0deg, rgba(255, 255, 255, 0.298039) 1px, rgba(0, 0, 0, 0) 1px), #3A660E;
+    //background: -moz-linear-gradient(0deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), -moz-linear-gradient(90deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), -moz-linear-gradient(0deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), -moz-linear-gradient(90deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), #373737;
+    //background: linear-gradient(0deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), linear-gradient(90deg, #FFFFFF 2px, rgba(0,0,0,0) 2px), linear-gradient(0deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), linear-gradient(90deg, rgba(255,255,255,0.298039) 1px, rgba(0,0,0,0) 1px), #373737;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
 }
 
+.brand-image {
+    width: 86px;
+    height: 100%;
+}
+
+.brand-name,
+.app-version {
+    margin: 0;
+    padding: 0;
+}
