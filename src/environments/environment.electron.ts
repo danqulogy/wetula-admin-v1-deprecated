@@ -3,7 +3,7 @@ export const environment = {
   electron: true,
   smsgh: {
     clientId: 'fbkazmva',
-    clientSecret: 'catbqayd'
+    clientSecret: 'catbqayd',
   },
   firebase: {
     apiKey: 'AIzaSyCupcnrSG6KUYTHA-6K4LoeOxc0LOQdS5Y',
@@ -11,6 +11,6 @@ export const environment = {
     databaseURL: 'https://wetula-186816.firebaseio.com',
     projectId: 'wetula-186816',
     storageBucket: 'wetula-186816.appspot.com',
-    messagingSenderId: '276463102141'
-  }
-};
+    messagingSenderId: '276463102141',
+  },
+}

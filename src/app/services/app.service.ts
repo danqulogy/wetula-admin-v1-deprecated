@@ -1,15 +1,13 @@
-import {Injectable} from '@angular/core';
-import {InternalStateType} from '../interfaces/InternalStateType';
+import { Injectable } from '@angular/core'
+import { InternalStateType } from '../interfaces/InternalStateType'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AppService {
-
   // Set your states default value.
   private state: InternalStateType = {
-    currentLoginUser:  null,
+    currentLoginUser: null,
     appName: 'Wetula',
     darkMode: false,
     initial: false,
@@ -22,8 +20,8 @@ export class AppService {
     topNavTitle: 'Wetula Platform',
     topNavSubTitle: 'Administrative Console',
     titleColor1: 'fg-green',
-    titleColor2: 'fg-darkGreen'
-  };
+    titleColor2: 'fg-darkGreen',
+  }
 
   /**
    * Get entire states.1
@@ -31,7 +29,7 @@ export class AppService {
    * @return  {InternalStateType} State do not respond to changes.
    */
   public cloneState(): InternalStateType {
-    return JSON.parse(JSON.stringify(this.state));
+    return JSON.parse(JSON.stringify(this.state))
   }
 
   /**
@@ -40,7 +38,7 @@ export class AppService {
    * @param state
    */
   public reloadState(state: InternalStateType) {
-    this.state = state;
+    this.state = state
   }
 
   /**
@@ -60,8 +58,8 @@ export class AppService {
    * @return {InternalStateType} State respond to changes.
    */
   public getState(prop?: any): InternalStateType {
-    const state = this.state;
-    return state.hasOwnProperty(prop) ? state[prop] : state;
+    const state = this.state
+    return state.hasOwnProperty(prop) ? state[prop] : state
   }
 
   /**
@@ -72,6 +70,6 @@ export class AppService {
    * @return {any} State value.
    */
   public setState(prop: string, value: any) {
-    return this.state[prop] = value;
+    return (this.state[prop] = value)
   }
 }

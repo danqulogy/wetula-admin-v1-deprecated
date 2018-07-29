@@ -7,7 +7,7 @@ export const environment = {
   electron: false,
   smsgh: {
     clientId: 'fbkazmva',
-    clientSecret: 'catbqayd'
+    clientSecret: 'catbqayd',
   },
   firebase: {
     apiKey: 'AIzaSyDeqQXIGaDFZkjwasZrZjWsgs9mqMaxI6s',
@@ -15,9 +15,9 @@ export const environment = {
     databaseURL: 'https://wetula-dev.firebaseio.com',
     projectId: 'wetula-dev',
     storageBucket: '',
-    messagingSenderId: '827052164552'
-  }
-};
+    messagingSenderId: '827052164552',
+  },
+}
 
 /*
  * In development mode, to ignore zone related error stack frames such as

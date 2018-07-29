@@ -1,15 +1,26 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'
 import {
   MatAutocompleteModule,
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
   MatMenuModule,
   MatOptionModule,
   MatProgressBarModule,
-  MatProgressSpinnerModule, MatSelectModule,
+  MatProgressSpinnerModule,
+  MatSelectModule,
   MatSidenavModule,
-  MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
-  MatTabsModule, MatToolbarModule
-} from '@angular/material';
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatTabsModule,
+  MatToolbarModule,
+} from '@angular/material'
 
 @NgModule({
   imports: [
@@ -55,8 +66,7 @@ import {
     MatOptionModule,
     MatCardModule,
     MatChipsModule,
-
   ],
-  declarations: []
+  declarations: [],
 })
-export class MaterialModule { }
+export class MaterialModule {}
