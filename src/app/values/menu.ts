@@ -13,14 +13,14 @@ export class MenuMock {
       link: '/dashboard'
     },
     {
-      name: 'categories',
-      title: 'Categories',
-      faIcon: 'fa-sitemap',
+      name: 'farmers',
+      title: 'Farmers',
+      faIcon: 'fa-users',
       notifyClass: 'bg-warn label',
       link: '/categories'
     },
     {
-      name: 'products',
+      name: 'organizations',
       title: 'Products',
       faIcon: 'fa-cubes',
       notifyClass: 'bg-warn label',

@@ -19,7 +19,7 @@ export class AppService {
     sideNavCollapse: false,
     sideNavMode: 'over',
     sideNavOpen: true,
-      topNavTitle: 'Wetula Platform',
+    topNavTitle: 'Wetula Platform',
     topNavSubTitle: 'Administrative Console',
     titleColor1: 'fg-green',
     titleColor2: 'fg-darkGreen'
