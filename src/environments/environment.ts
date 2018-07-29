@@ -10,12 +10,12 @@ export const environment = {
     clientSecret: 'catbqayd'
   },
   firebase: {
-    apiKey: 'AIzaSyDaMhGAMgaM86l93g5gAdzzJJbwG0D_Wa0',
-    authDomain: 'metrostore-jeffery-nzema.firebaseapp.com',
-    databaseURL: 'https://metrostore-jeffery-nzema.firebaseio.com',
-    projectId: 'metrostore-jeffery-nzema',
-    storageBucket: 'metrostore-jeffery-nzema.appspot.com',
-    messagingSenderId: '1067833455622'
+    apiKey: 'AIzaSyDeqQXIGaDFZkjwasZrZjWsgs9mqMaxI6s',
+    authDomain: 'wetula-dev.firebaseapp.com',
+    databaseURL: 'https://wetula-dev.firebaseio.com',
+    projectId: 'wetula-dev',
+    storageBucket: '',
+    messagingSenderId: '827052164552'
   }
 };
 

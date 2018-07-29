@@ -20,11 +20,10 @@
                 </div>
             </div>
 
-            <mat-divider class="pb-8"></mat-divider>
-            <p class="c-default text-center text-bold {{appService.getState().titleColor2}}">Please Sign in to continue</p>
+            <mat-divider></mat-divider>
+            <p class="c-default pt-4 pb-2 text-center text-bold {{appService.getState().titleColor2}}">Please Sign in to continue</p>
             <mat-card-content>
 
-                <!-- <p class="c-default pt-8 pb-2 text-center text-bold {{appService.getState().titleColor1}}"><span class="mif mif-lock"></span> Sign in to continue</p> -->
 
                 <div fxLayout="column">
                     <mat-form-field *ngIf="!appService.getState().darkMode">

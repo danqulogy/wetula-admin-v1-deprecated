@@ -45,7 +45,7 @@ export class SigninPageComponent implements OnInit, OnDestroy {
 
   login() {
     const self = this;
-    self.router.navigateByUrl('/dashboard');
+    // self.router.navigateByUrl('/dashboard');
     this.isSubmitted = true;
     this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
       .then(function(successCallback) {

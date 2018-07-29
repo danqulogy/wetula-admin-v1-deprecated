@@ -2,11 +2,11 @@ export const environment = {
   production: true,
   electron: false,
   firebase: {
-    apiKey: 'AIzaSyDaMhGAMgaM86l93g5gAdzzJJbwG0D_Wa0',
-    authDomain: 'metrostore-jeffery-nzema.firebaseapp.com',
-    databaseURL: 'https://metrostore-jeffery-nzema.firebaseio.com',
-    projectId: 'metrostore-jeffery-nzema',
-    storageBucket: 'metrostore-jeffery-nzema.appspot.com',
-    messagingSenderId: '1067833455622'
+    apiKey: 'AIzaSyCupcnrSG6KUYTHA-6K4LoeOxc0LOQdS5Y',
+    authDomain: 'wetula-186816.firebaseapp.com',
+    databaseURL: 'https://wetula-186816.firebaseio.com',
+    projectId: 'wetula-186816',
+    storageBucket: 'wetula-186816.appspot.com',
+    messagingSenderId: '276463102141'
   }
 };
