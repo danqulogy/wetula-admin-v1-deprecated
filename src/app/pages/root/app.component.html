@@ -1,302 +1,388 @@
 <mat-toolbar *ngIf="!appService.getState().pageFullScreen" class="topnav-container">
-    <!--Side Nav Button-->
-    <a mat-icon-button class="topnav-menu-btn" (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-    </a>
-    <!--Application Title-->
-    <div>
-        <!-- TODO: Design SVG version of the logo-->
-        <img class="ml-6" src="assets/logo.png" height="48px" *ngIf="appService.getState().sideNavMode === 'side'">
-        <span class="text-bold pl-4"><span class="{{appService.getState().titleColor1}}" style="font-weight: bolder">Wetula</span>
-        <span class="{{appService.getState().titleColor2}}"> Platform</span><sup class="fg-orange">&reg;</sup> </span> |
-        <span class="fg-orange"><span fxShow="false" class="fa fa-shield"></span> {{appService.getState().topNavSubTitle}}</span>
-    </div>
-    <span class="toolbar-filler"></span>
-    <!--Apps Menu-->
-    <!-- <span fxShow.sm="false" fxShow.xs="false">
+  <!--Side Nav Button-->
+  <a mat-icon-button class="topnav-menu-btn" (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </a>
+  <!--Application Title-->
+  <div>
+    <!-- TODO: Design SVG version of the logo-->
+    <img class="ml-6" src="assets/logo.png" height="48px" *ngIf="appService.getState().sideNavMode === 'side'">
+    <span class="text-bold pl-4">
+      <span class="{{appService.getState().titleColor1}}" style="font-weight: bolder">Wetula</span>
+      <span class="{{appService.getState().titleColor2}}"> Platform</span>
+      <sup class="fg-orange">&reg;</sup>
+    </span> |
+    <span class="fg-orange">
+      <span fxShow="false" class="fa fa-shield"></span> {{appService.getState().topNavSubTitle}}</span>
+  </div>
+  <span class="toolbar-filler"></span>
+  <!--Apps Menu-->
+  <!-- <span fxShow.sm="false" fxShow.xs="false">
   <a mat-icon-button
      (click)="toggleTopnavSearch()">
     <mat-icon>search</mat-icon>
   </a>
   </span> -->
 
-    <!--TODO: Check Angular Material Docs for mat-autocomplete implementation-->
-    <!--<div class="topnav-search" fxShow.sm="false" fxShow.xs="false">-->
-    <!--<mat-autocomplete [class.show]="showTopnavSearch" [items]="searchItems" item-text="title" item-value="link" (blur)="alert('xxx')" (change)="selectedSearchItem($event)" [(ngModel)]="searchItem">-->
-    <!--</mat-autocomplete>-->
-    <!--</div>-->
+  <!--TODO: Check Angular Material Docs for mat-autocomplete implementation-->
+  <!--<div class="topnav-search" fxShow.sm="false" fxShow.xs="false">-->
+  <!--<mat-autocomplete [class.show]="showTopnavSearch" [items]="searchItems" item-text="title" item-value="link" (blur)="alert('xxx')" (change)="selectedSearchItem($event)" [(ngModel)]="searchItem">-->
+  <!--</mat-autocomplete>-->
+  <!--</div>-->
 
-    <span fxShow.sm="false" fxShow.xs="false">
-  <a mat-icon-button (click)="toggleFullscreen()">
-    <mat-icon>fullscreen</mat-icon>
-  </a>
+  <span fxShow.sm="false" fxShow.xs="false">
+    <a mat-icon-button (click)="toggleFullscreen()">
+      <mat-icon>fullscreen</mat-icon>
+    </a>
   </span>
 
-    <span fxShow.sm="false" fxShow.xs="false">
+  <span fxShow.sm="false" fxShow.xs="false">
     <a mat-icon-button onclick="forceRefresh()">
-    <mat-icon>refresh</mat-icon>
+      <mat-icon>refresh</mat-icon>
     </a>
   </span>
 
 
-    <!-- Apps Menu -->
-    <span fxShow.sm="false" fxShow.xs="false">
-  <a mat-icon-button  [mat-menu-trigger-for]="topnavAppsMenu">
-    <span class="count-notify">6</span>
-    <mat-icon>apps</mat-icon>
-    </a>
-    </span>
-    <mat-menu #topnavAppsMenu="matMenu">
-        <div class="menu-card">
-            <div>
-                <a class="menu-block-btn"><img src="assets/img/icon-atom.png"><span>Atom</span></a>
-                <a class="menu-block-btn"><img src="assets/img/icon-bootstrap.png"><span>Bootstrap</span></a>
-                <a class="menu-block-btn"><img src="assets/img/icon-ts.png"><span>TypeScript</span></a>
-            </div>
-            <div>
-                <a class="menu-block-btn"><img src="assets/img/icon-facebook.png"><span>Facebook</span></a>
-                <a class="menu-block-btn"><img src="assets/img/icon-google.png"><span>Google</span></a>
-                <a class="menu-block-btn"><img src="assets/img/icon-swift.png"><span>Swift</span></a>
-            </div>
-            <a class="menu-block-bottom-btn">More</a>
-        </div>
-    </mat-menu>
-    <!--End Apps Menu-->
+  <!-- Apps Menu -->
+  <!-- <span fxShow.sm="false" fxShow.xs="false">
+      <a mat-icon-button  [mat-menu-trigger-for]="topnavAppsMenu">
+        <span class="count-notify">6</span>
+        <mat-icon>apps</mat-icon>
+      </a>
+    </span> -->
+  <mat-menu #topnavAppsMenu="matMenu">
+    <div class="menu-card">
+      <div>
+        <a class="menu-block-btn">
+          <img src="assets/img/icon-atom.png">
+          <span>Atom</span>
+        </a>
+        <a class="menu-block-btn">
+          <img src="assets/img/icon-bootstrap.png">
+          <span>Bootstrap</span>
+        </a>
+        <a class="menu-block-btn">
+          <img src="assets/img/icon-ts.png">
+          <span>TypeScript</span>
+        </a>
+      </div>
+      <div>
+        <a class="menu-block-btn">
+          <img src="assets/img/icon-facebook.png">
+          <span>Facebook</span>
+        </a>
+        <a class="menu-block-btn">
+          <img src="assets/img/icon-google.png">
+          <span>Google</span>
+        </a>
+        <a class="menu-block-btn">
+          <img src="assets/img/icon-swift.png">
+          <span>Swift</span>
+        </a>
+      </div>
+      <a class="menu-block-bottom-btn">More</a>
+    </div>
+  </mat-menu>
+  <!--End Apps Menu-->
 
-    <!--Notifications Menu-->
-    <a mat-icon-button [mat-menu-trigger-for]="topnavNotificationsMenu">
+  <!--Notifications Menu-->
+  <!-- <a mat-icon-button [mat-menu-trigger-for]="topnavNotificationsMenu">
         <span class="count-notify">3</span>
         <mat-icon>notifications</mat-icon>
-    </a>
-    <mat-menu #topnavNotificationsMenu="matMenu">
-        <div class="menu-card">
-            <mat-list>
-                <mat-list-item>
-                    <img mat-list-avatar src="assets/img/avatar3.png" alt="...">
-                    <h3 mat-line> Tim Max <span class="pull-right"> <small>just now</small></span></h3>
-                    <p mat-line>
-                        <span> <small>Make some fun tonight?</small></span>
-                    </p>
-                </mat-list-item>
-                <mat-list-item>
-                    <img mat-list-avatar src="assets/img/avatar.jpg" alt="...">
-                    <h3 mat-line> Chiho Sin <span class="pull-right"> <small>2 min ago</small></span></h3>
-                    <p mat-line>
-                        <span> <small>Hello!</small></span>
-                    </p>
-                </mat-list-item>
-                <mat-list-item>
-                    <img mat-list-avatar src="assets/img/avatar1.png" alt="...">
-                    <h3 mat-line> Alex Chan <span class="pull-right"> <small>8 min ago</small></span></h3>
-                    <p mat-line>
-                        <span> <small>I'm finish my job!</small></span>
-                    </p>
-                </mat-list-item>
-            </mat-list>
-            <a class="menu-block-bottom-btn">View all</a>
-        </div>
-    </mat-menu>
+    </a> -->
+  <mat-menu #topnavNotificationsMenu="matMenu">
+    <div class="menu-card">
+      <mat-list>
+        <mat-list-item>
+          <img mat-list-avatar src="assets/img/avatar3.png" alt="...">
+          <h3 mat-line> Tim Max
+            <span class="pull-right">
+              <small>just now</small>
+            </span>
+          </h3>
+          <p mat-line>
+            <span>
+              <small>Make some fun tonight?</small>
+            </span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <img mat-list-avatar src="assets/img/avatar.jpg" alt="...">
+          <h3 mat-line> Chiho Sin
+            <span class="pull-right">
+              <small>2 min ago</small>
+            </span>
+          </h3>
+          <p mat-line>
+            <span>
+              <small>Hello!</small>
+            </span>
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <img mat-list-avatar src="assets/img/avatar1.png" alt="...">
+          <h3 mat-line> Alex Chan
+            <span class="pull-right">
+              <small>8 min ago</small>
+            </span>
+          </h3>
+          <p mat-line>
+            <span>
+              <small>I'm finish my job!</small>
+            </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+      <a class="menu-block-bottom-btn">View all</a>
+    </div>
+  </mat-menu>
 
-    <!--User Menu-->
-    <a *ngIf="afAuth.authState | async; let user;" mat-icon-button [mat-menu-trigger-for]="topnavUserMenu">
-        <!-- <img class="topnav-avatar" src="assets/img/avatar.jpg"> Hello {{ user.email }}! -->
-        <mat-icon>person</mat-icon>
-    </a>
-    <!--<ng-template #showLogin>-->
-    <!--<p>Please login</p>-->
-    <!--<button (click)="login()">Login with Google</button>-->
-    <!--</ng-template>-->
-    <mat-menu #topnavUserMenu="matMenu">
+  <!--User Menu-->
+  <a *ngIf="afAuth.authState | async; let user;" mat-icon-button [mat-menu-trigger-for]="topnavUserMenu">
+    <!-- <img class="topnav-avatar" src="assets/img/avatar.jpg"> Hello {{ user.email }}! -->
+    <mat-icon>person</mat-icon>
+  </a>
+  <!--<ng-template #showLogin>-->
+  <!--<p>Please login</p>-->
+  <!--<button (click)="login()">Login with Google</button>-->
+  <!--</ng-template>-->
+  <mat-menu #topnavUserMenu="matMenu">
 
-        <button *ngIf="afAuth.authState | async; let user;" mat-menu-item>
+    <button *ngIf="afAuth.authState | async; let user;" mat-menu-item>
       <mat-icon>person</mat-icon>
       <span>Logged in as: {{user.email}}</span>
     </button>
-        <button mat-menu-item>
+    <button mat-menu-item>
       <mat-icon>settings</mat-icon>
       <span>Setting</span>
     </button>
-        <button (click)="lock()" mat-menu-item>
+    <button (click)="lock()" mat-menu-item>
       <mat-icon>lock_outline</mat-icon>
       <span>Lock</span>
     </button>
-    </mat-menu>
-    <a mat-icon-button (click)="toggleMessagePanel()">
+  </mat-menu>
+  <!-- <a mat-icon-button (click)="toggleMessagePanel()">
         <mat-icon>list</mat-icon>
-    </a>
+    </a> -->
 
 </mat-toolbar>
 <!--Page container-->
 <mat-sidenav-container>
 
-    <!--Side nva bar-->
-    <mat-sidenav fxShow="{{appService.getState().displaySideNav}}" id="menuSideNavbar" style="margin-top: 1%" [class.sidenav-collapse]="appService.getState().sideNavCollapse" *ngIf="!appService.getState().pageFullScreen" mode="{{appService.getState().sideNavMode}}"
-        opened="{{ appService.getState().sideNavOpen }}" position="start" #menusidenav (close)="closeSidenav()" (open)="openSidenav()" (mouseout)="toggleSidenavCollapse()">
-        <div class="sidenav-container">
-            <mat-nav-list *ngIf="mainMenu">
-                <ng-template ngFor let-menuItem [ngForOf]="mainMenu">
-                    <ng-template [ngIf]="!menuItem.sub">
-                        <mat-list-item (click)="toggleSidenavMenu(menuItem.name, false, false)" routerLink="{{menuItem.link}}" routerLinkActive="active">
-                            <a mat-line>
-                                <i class="material-icons" aria-hidden="true" *ngIf="menuItem.matIcon">{{menuItem.matIcon}}</i>
-                                <i style="font-size: 95%" class="fa fa-lg {{menuItem.faIcon}}" aria-hidden="true" *ngIf="menuItem.faIcon && !menuItem.matIcon"></i> &nbsp;&nbsp;
-                                <span class="sidenav-collapse-item">{{menuItem.title}}</span></a>
-                            <span *ngIf="menuItem.notifyContent" class="{{menuItem.notifyClass}}">{{menuItem.notifyContent}}</span>
-                        </mat-list-item>
-                        <mat-divider></mat-divider>
-                    </ng-template>
-                    <ng-template [ngIf]="menuItem.sub">
-                        <mat-list-item (click)="toggleSidenavMenu(menuItem.name, false, true)" [class.active]="activeSubMenuName === menuItem.name">
-                            <a mat-line>
-                                <i class="material-icons" aria-hidden="true" *ngIf="menuItem.matIcon">{{menuItem.matIcon}}</i>
-                                <i style="font-size: 95%" class="fa fa-lg {{menuItem.faIcon}}" aria-hidden="true" *ngIf="menuItem.faIcon && !menuItem.matIcon"></i> &nbsp;&nbsp;
-                                <span class="sidenav-collapse-item">{{menuItem.title}}</span></a>
-                            <span *ngIf="menuItem.notifyContent" class="{{menuItem.notifyClass}}">{{menuItem.notifyContent}}</span>
-                            <i *ngIf="activeSubMenuName === menuItem.name" class="material-icons sidenav-collapse-item">expand_more</i>
-                            <i *ngIf="activeSubMenuName !== menuItem.name" class="material-icons sidenav-collapse-item">chevron_right</i>
-                        </mat-list-item>
-                        <mat-list-item class="sidenav-menu-sub" *ngFor="let subMenuItem of menuItem.sub" (click)="toggleSidenavMenu(subMenuItem.name, true, false )" [class.show]="activeSubMenuName === menuItem.name" routerLink="{{subMenuItem.link}}" routerLinkActive="active">
-                            <a style="padding-left:40px;" mat-line class="sidenav-menu-sub-title">
-                                <i class="material-icons" aria-hidden="true" *ngIf="subMenuItem.matIcon">{{subMenuItem.matIcon}}</i>
-                                <i style="font-size: 95%" class="fa fa-lg {{subMenuItem.faIcon}}" aria-hidden="true" *ngIf="subMenuItem.faIcon && !subMenuItem.matIcon"></i>
-                                <span class="sidenav-collapse-item">{{subMenuItem.title}}
+  <!--Side nva bar-->
+  <mat-sidenav fxShow="{{appService.getState().displaySideNav}}" id="menuSideNavbar" style="margin-top: 1%" [class.sidenav-collapse]="appService.getState().sideNavCollapse"
+    *ngIf="!appService.getState().pageFullScreen" mode="{{appService.getState().sideNavMode}}" opened="{{ appService.getState().sideNavOpen }}"
+    position="start" #menusidenav (close)="closeSidenav()" (open)="openSidenav()" (mouseout)="toggleSidenavCollapse()">
+    <div class="sidenav-container">
+      <mat-nav-list *ngIf="mainMenu">
+        <ng-template ngFor let-menuItem [ngForOf]="mainMenu">
+          <ng-template [ngIf]="!menuItem.sub">
+            <mat-list-item (click)="toggleSidenavMenu(menuItem.name, false, false)" routerLink="{{menuItem.link}}" routerLinkActive="active">
+              <a mat-line>
+                <i class="material-icons" aria-hidden="true" *ngIf="menuItem.matIcon">{{menuItem.matIcon}}</i>
+                <i style="font-size: 95%" class="fa fa-lg {{menuItem.faIcon}}" aria-hidden="true" *ngIf="menuItem.faIcon && !menuItem.matIcon"></i> &nbsp;&nbsp;
+                <span class="sidenav-collapse-item">{{menuItem.title}}</span>
+              </a>
+              <span *ngIf="menuItem.notifyContent" class="{{menuItem.notifyClass}}">{{menuItem.notifyContent}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-template>
+          <ng-template [ngIf]="menuItem.sub">
+            <mat-list-item (click)="toggleSidenavMenu(menuItem.name, false, true)" [class.active]="activeSubMenuName === menuItem.name">
+              <a mat-line>
+                <i class="material-icons" aria-hidden="true" *ngIf="menuItem.matIcon">{{menuItem.matIcon}}</i>
+                <i style="font-size: 95%" class="fa fa-lg {{menuItem.faIcon}}" aria-hidden="true" *ngIf="menuItem.faIcon && !menuItem.matIcon"></i> &nbsp;&nbsp;
+                <span class="sidenav-collapse-item">{{menuItem.title}}</span>
+              </a>
+              <span *ngIf="menuItem.notifyContent" class="{{menuItem.notifyClass}}">{{menuItem.notifyContent}}</span>
+              <i *ngIf="activeSubMenuName === menuItem.name" class="material-icons sidenav-collapse-item">expand_more</i>
+              <i *ngIf="activeSubMenuName !== menuItem.name" class="material-icons sidenav-collapse-item">chevron_right</i>
+            </mat-list-item>
+            <mat-list-item class="sidenav-menu-sub" *ngFor="let subMenuItem of menuItem.sub" (click)="toggleSidenavMenu(subMenuItem.name, true, false )"
+              [class.show]="activeSubMenuName === menuItem.name" routerLink="{{subMenuItem.link}}" routerLinkActive="active">
+              <a style="padding-left:40px;" mat-line class="sidenav-menu-sub-title">
+                <i class="material-icons" aria-hidden="true" *ngIf="subMenuItem.matIcon">{{subMenuItem.matIcon}}</i>
+                <i style="font-size: 95%" class="fa fa-lg {{subMenuItem.faIcon}}" aria-hidden="true" *ngIf="subMenuItem.faIcon && !subMenuItem.matIcon"></i>
+                <span class="sidenav-collapse-item">{{subMenuItem.title}}
                 </span>
-                            </a>
-                            <i class="material-icons sidenav-collapse-item">chevron_right</i>
-                        </mat-list-item>
-                    </ng-template>
-                </ng-template>
-            </mat-nav-list>
-        </div>
-    </mat-sidenav>
+              </a>
+              <i class="material-icons sidenav-collapse-item">chevron_right</i>
+            </mat-list-item>
+          </ng-template>
+        </ng-template>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
 
-    <mat-sidenav style="margin-top: 1%" *ngIf="!appService.getState().pageFullscreen" mode="over" opened="{{ appService.getState().messagePanelOpen }}" position="end" (close)="closeMessagePanel()" (open)="openMessagePanel()">
-        <div class="message-panel">
-            <mat-tab-group>
-                <mat-tab label="Today">
-                    <div class="page-content">
-                        <!--<h4>{{ date | date:'EEEE, HH:mm:ss' }}</h4>-->
-                        <div class="time-panel">
-                            <p>{{ date | date:'MMMM' }}</p>
-                            <p>{{ date | date:'d' }}</p>
-                            <p>{{ date | date:'y' }}</p>
-                        </div>
-                        <mat-list>
-                            <mat-divider></mat-divider>
-                            <h3 mat-subheader>Events</h3>
-                            <mat-list-item>
-                                <mat-icon mat-list-avatar style="color: red">fiber_manual_record</mat-icon>
-                                <h4 mat-line>Mail server shutdown</h4>
-                                <p mat-line>Just now</p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <mat-icon mat-list-avatar style="color: yellow">fiber_manual_record</mat-icon>
-                                <h4 mat-line>Redis caches flush</h4>
-                                <p mat-line>3 minute ago</p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <mat-icon mat-list-avatar style="color: gray">fiber_manual_record</mat-icon>
-                                <h4 mat-line>Create ETL tasks</h4>
-                                <p mat-line>1 hour ago</p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <mat-icon mat-list-avatar style="color: green">fiber_manual_record</mat-icon>
-                                <h4 mat-line>Eureka service startup</h4>
-                                <p mat-line>3 day ago</p>
-                            </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <h3 mat-subheader>Tasks</h3>
-                            <mat-list-item>
-                                <mat-icon mat-list-avatar>restore</mat-icon>
-                                <h4 mat-line>Database Backup</h4>
-                                <p mat-line>Processing</p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <mat-icon mat-list-avatar>timeline</mat-icon>
-                                <h4 mat-line>ETL Tasks</h4>
-                                <p mat-line>Waiting</p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <mat-icon mat-list-avatar>sync</mat-icon>
-                                <h4 mat-line>Cleanup caches</h4>
-                                <p mat-line>Finished</p>
-                            </mat-list-item>
-                        </mat-list>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Recent Activities">
-                    <div class="page-content">
-                        <mat-list>
-                            <h3 mat-subheader>Friends</h3>
-                            <mat-list-item>
-                                <img mat-list-avatar src="assets/img/avatar3.png" alt="...">
-                                <h3 mat-line> Tim Max <span class="pull-right"> <small>just now</small></span></h3>
-                                <p mat-line>
-                                    <span> <small>Make some fun tonight?</small></span>
-                                </p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <img mat-list-avatar src="assets/img/avatar.jpg" alt="...">
-                                <h3 mat-line> Chiho Sin <span class="pull-right"> <small>2 min ago</small></span></h3>
-                                <p mat-line>
-                                    <span> <small>Hello!</small></span>
-                                </p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <img mat-list-avatar src="assets/img/avatar1.png" alt="...">
-                                <h3 mat-line> Alex Chan <span class="pull-right"> <small>8 min ago</small></span></h3>
-                                <p mat-line>
-                                    <span> <small>I'm finish my job!</small></span>
-                                </p>
-                            </mat-list-item>
-                            <mat-divider></mat-divider>
-                            <h3 mat-subheader>Server monitor</h3>
-                            <mat-list-item>
-                                <h3 mat-line> CPU <span class="pull-right"> <small>32%</small></span></h3>
-                                <p mat-line>
-                                    <mat-progress-bar value="32" mode="determinate"></mat-progress-bar>
-                                </p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <h3 mat-line> RAM <span class="pull-right"> <small>76%</small></span></h3>
-                                <p mat-line>
-                                    <mat-progress-bar value="76" mode="determinate" color="accent"></mat-progress-bar>
-                                </p>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <h3 mat-line> DISK <span class="pull-right"> <small>7%</small></span></h3>
-                                <p mat-line>
-                                    <mat-progress-bar value="7" mode="determinate" color="warn"></mat-progress-bar>
-                                </p>
-                            </mat-list-item>
-                        </mat-list>
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
-        </div>
-    </mat-sidenav>
+  <mat-sidenav style="margin-top: 1%" *ngIf="!appService.getState().pageFullscreen" mode="over" opened="{{ appService.getState().messagePanelOpen }}"
+    position="end" (close)="closeMessagePanel()" (open)="openMessagePanel()">
+    <div class="message-panel">
+      <mat-tab-group>
+        <mat-tab label="Today">
+          <div class="page-content">
+            <!--<h4>{{ date | date:'EEEE, HH:mm:ss' }}</h4>-->
+            <div class="time-panel">
+              <p>{{ date | date:'MMMM' }}</p>
+              <p>{{ date | date:'d' }}</p>
+              <p>{{ date | date:'y' }}</p>
+            </div>
+            <mat-list>
+              <mat-divider></mat-divider>
+              <h3 mat-subheader>Events</h3>
+              <mat-list-item>
+                <mat-icon mat-list-avatar style="color: red">fiber_manual_record</mat-icon>
+                <h4 mat-line>Mail server shutdown</h4>
+                <p mat-line>Just now</p>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar style="color: yellow">fiber_manual_record</mat-icon>
+                <h4 mat-line>Redis caches flush</h4>
+                <p mat-line>3 minute ago</p>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar style="color: gray">fiber_manual_record</mat-icon>
+                <h4 mat-line>Create ETL tasks</h4>
+                <p mat-line>1 hour ago</p>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar style="color: green">fiber_manual_record</mat-icon>
+                <h4 mat-line>Eureka service startup</h4>
+                <p mat-line>3 day ago</p>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <h3 mat-subheader>Tasks</h3>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>restore</mat-icon>
+                <h4 mat-line>Database Backup</h4>
+                <p mat-line>Processing</p>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>timeline</mat-icon>
+                <h4 mat-line>ETL Tasks</h4>
+                <p mat-line>Waiting</p>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon mat-list-avatar>sync</mat-icon>
+                <h4 mat-line>Cleanup caches</h4>
+                <p mat-line>Finished</p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-tab>
+        <mat-tab label="Recent Activities">
+          <div class="page-content">
+            <mat-list>
+              <h3 mat-subheader>Friends</h3>
+              <mat-list-item>
+                <img mat-list-avatar src="assets/img/avatar3.png" alt="...">
+                <h3 mat-line> Tim Max
+                  <span class="pull-right">
+                    <small>just now</small>
+                  </span>
+                </h3>
+                <p mat-line>
+                  <span>
+                    <small>Make some fun tonight?</small>
+                  </span>
+                </p>
+              </mat-list-item>
+              <mat-list-item>
+                <img mat-list-avatar src="assets/img/avatar.jpg" alt="...">
+                <h3 mat-line> Chiho Sin
+                  <span class="pull-right">
+                    <small>2 min ago</small>
+                  </span>
+                </h3>
+                <p mat-line>
+                  <span>
+                    <small>Hello!</small>
+                  </span>
+                </p>
+              </mat-list-item>
+              <mat-list-item>
+                <img mat-list-avatar src="assets/img/avatar1.png" alt="...">
+                <h3 mat-line> Alex Chan
+                  <span class="pull-right">
+                    <small>8 min ago</small>
+                  </span>
+                </h3>
+                <p mat-line>
+                  <span>
+                    <small>I'm finish my job!</small>
+                  </span>
+                </p>
+              </mat-list-item>
+              <mat-divider></mat-divider>
+              <h3 mat-subheader>Server monitor</h3>
+              <mat-list-item>
+                <h3 mat-line> CPU
+                  <span class="pull-right">
+                    <small>32%</small>
+                  </span>
+                </h3>
+                <p mat-line>
+                  <mat-progress-bar value="32" mode="determinate"></mat-progress-bar>
+                </p>
+              </mat-list-item>
+              <mat-list-item>
+                <h3 mat-line> RAM
+                  <span class="pull-right">
+                    <small>76%</small>
+                  </span>
+                </h3>
+                <p mat-line>
+                  <mat-progress-bar value="76" mode="determinate" color="accent"></mat-progress-bar>
+                </p>
+              </mat-list-item>
+              <mat-list-item>
+                <h3 mat-line> DISK
+                  <span class="pull-right">
+                    <small>7%</small>
+                  </span>
+                </h3>
+                <p mat-line>
+                  <mat-progress-bar value="7" mode="determinate" color="warn"></mat-progress-bar>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </mat-sidenav>
 
-    <!--Page content-->
-    <mat-sidenav-content style="padding-top: 1%" [class.minus-280]="router.url == '/pages-signin'" [class.page-container]="!appService.getState().pageFullScreen">
-        <router-outlet></router-outlet>
-        <!--Page footer-->
-        <mat-toolbar class="page-footer" *ngIf="appService.getState().pageFooter">
-            <span class="fg-yellow">Powered by AilenTech Software Group</span>
-            <span class="filler"></span>
-            <p class="text-uppercase"><span class="mif-users fg-yellow"></span> <a href="#"><span class="fg-green">5 USERS</span></a> </p>
-            <span class="filler"></span>
-            <p class="text-uppercase"><span class="fg-yellow mif-my-location"></span> <span class="fg-green">Ejura (Main Station)</span> </p>
+  <!--Page content-->
+  <mat-sidenav-content style="padding-top: 1%" [class.minus-280]="router.url == '/pages-signin'" [class.page-container]="!appService.getState().pageFullScreen">
+    <router-outlet></router-outlet>
+    <!--Page footer-->
+    <mat-toolbar class="page-footer" *ngIf="appService.getState().pageFooter">
+      <span class="fg-yellow">Powered by AilenTech Software Group</span>
+      <span class="filler"></span>
+      <p class="text-uppercase">
+        <span class="mif-users fg-yellow"></span>
+        <a href="#">
+          <span class="fg-green">5 USERS</span>
+        </a>
+      </p>
+      <span class="filler"></span>
+      <p class="text-uppercase">
+        <span class="fg-yellow mif-my-location"></span>
+        <span class="fg-green">Ejura (Main Station)</span>
+      </p>
 
-            <span class="filler"></span>
-            <p style="width: 40vw">
-                <marquee style="line-height: 14px" class="fg-yellow text-uppercase">Yartel Group of companies. &copy; Copyright 2018 | &nbsp;&nbsp;
-                    <span class="fg-white">Administrative Management Software |</span> &nbsp;&nbsp;
-                    <span>Logged in as <span class="fg-lightOrange">Paul Kwame Yartel</span></span>
-                </marquee>
-            </p>
-        </mat-toolbar>
-    </mat-sidenav-content>
+      <span class="filler"></span>
+      <p style="width: 40vw">
+        <marquee style="line-height: 14px" class="fg-yellow text-uppercase">Yartel Group of companies. &copy; Copyright 2018 | &nbsp;&nbsp;
+          <span class="fg-white">Administrative Management Software |</span> &nbsp;&nbsp;
+          <span>Logged in as
+            <span class="fg-lightOrange">Paul Kwame Yartel</span>
+          </span>
+        </marquee>
+      </p>
+    </mat-toolbar>
+  </mat-sidenav-content>
 </mat-sidenav-container>
-<button *ngIf="router.url != '/pages-signin'" mat-fab color="primary" style="position: absolute;bottom: 52px;right: 16px;z-index: 5;" (click)="openThemeDialog()">
+<button *ngIf="router.url != '/pages-signin'" mat-fab color="primary" style="position: absolute;bottom: 52px;right: 16px;z-index: 5;"
+  (click)="openThemeDialog()">
   <mat-icon class="fg-white">settings</mat-icon>
 </button>

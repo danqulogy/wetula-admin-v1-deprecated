@@ -20,34 +20,49 @@ export class MenuMock {
     },
     {
       name: 'organizations',
-      title: 'Products',
-      faIcon: 'fa-cubes',
+      title: 'Organizations',
+      faIcon: 'fa-sitemap',
       notifyClass: 'bg-warn label',
-      link: '/products',
+      sub: [
+        {
+          name: 'crop_marketers',
+          title: 'Crop Marketers',
+          faIcon: 'fa-users',
+        },
+        {
+          name: 'crop_marketers',
+          title: 'NGOs',
+          faIcon: 'fa-users',
+        },
+        {
+          name: 'crop_marketers',
+          title: 'LBCs',
+          faIcon: 'fa-users',
+        },
+      ],
     },
-    {
-      name: 'customers',
-      title: 'Customers',
-      faIcon: 'fa-users',
-      notifyClass: 'bg-warn label',
-      link: '/customers',
-    },
+    // {
+    //   name: 'customers',
+    //   title: 'Customers',
+    //   faIcon: 'fa-users',
+    //   notifyClass: 'bg-warn label',
+    // },
     {
       name: 'suppliers',
-      title: 'Suppliers',
+      title: 'Reports',
       faIcon: 'fa-truck',
       notifyClass: 'bg-warn label',
       link: '/suppliers',
     },
     {
       name: 'manage',
-      title: 'Manage Stock',
+      title: 'Manage',
       faIcon: 'fa-plus',
       notifyClass: 'bg-warn label',
       sub: [
         {
           name: 'add_products',
-          title: 'Stock Entry',
+          title: 'Users',
         },
       ],
     },
