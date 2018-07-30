@@ -15,6 +15,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "wetula-lib": [
+        "dist/wetula-lib"
+      ],
+      "wetula-lib/*": [
+        "dist/wetula-lib/*"
+      ]
+    }
   }
 }
