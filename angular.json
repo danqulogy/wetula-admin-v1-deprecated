@@ -228,6 +228,46 @@
           }
         }
       }
+    },
+    "ailen-lib": {
+      "root": "projects/ailen-lib",
+      "sourceRoot": "projects/ailen-lib/src",
+      "projectType": "library",
+      "prefix": "ailen",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ailen-lib/tsconfig.lib.json",
+            "project": "projects/ailen-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ailen-lib/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ailen-lib/src/test.ts",
+            "tsConfig": "projects/ailen-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/ailen-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ailen-lib/tsconfig.lib.json",
+              "projects/ailen-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "admin"

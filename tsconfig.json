@@ -22,6 +22,12 @@
       ],
       "wetula-lib/*": [
         "dist/wetula-lib/*"
+      ],
+      "ailen-lib": [
+        "dist/ailen-lib"
+      ],
+      "ailen-lib/*": [
+        "dist/ailen-lib/*"
       ]
     }
   }
