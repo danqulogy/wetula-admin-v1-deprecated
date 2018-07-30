@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'wlib-wetula-lib',
@@ -7,13 +7,10 @@ import { Component, OnInit } from '@angular/core';
       wetula-lib works!
     </p>
   `,
-  styles: []
+  styles: [],
 })
 export class WetulaLibComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { AilenLibComponent } from './ailen-lib.component';
+import { AilenLibComponent } from './ailen-lib.component'
 
 describe('AilenLibComponent', () => {
-  let component: AilenLibComponent;
-  let fixture: ComponentFixture<AilenLibComponent>;
+  let component: AilenLibComponent
+  let fixture: ComponentFixture<AilenLibComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AilenLibComponent ]
-    })
-    .compileComponents();
-  }));
+      declarations: [AilenLibComponent],
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AilenLibComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(AilenLibComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

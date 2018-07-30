@@ -16,7 +16,7 @@ export class MenuMock {
       title: 'Farmers',
       faIcon: 'fa-users',
       notifyClass: 'bg-warn label',
-      link: '/categories',
+      link: '/farmers',
     },
     {
       name: 'organizations',

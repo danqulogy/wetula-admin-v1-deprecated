@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'ailen-ailen-lib',
@@ -7,13 +7,10 @@ import { Component, OnInit } from '@angular/core';
       ailen-lib works!
     </p>
   `,
-  styles: []
+  styles: [],
 })
 export class AilenLibComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

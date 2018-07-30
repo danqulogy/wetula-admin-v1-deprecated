@@ -1,11 +1,11 @@
 ///<reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core'
-import { AppService } from '../../services/app.service'
-import { Router } from '@angular/router'
-import { MatDialog, MatSnackBar } from '@angular/material'
-import { MenuMock } from '../../values/menu'
-import { DialogThemeComponent } from '../../dialogs/theme-dialog/dialog-theme.component'
-import { AngularFireAuth } from 'angularfire2/auth'
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { DialogThemeComponent } from '../../dialogs/theme-dialog/dialog-theme.component';
+import { AppService } from '../../services/app.service';
+import { MenuMock } from '../../values/menu';
 
 declare var $: any
 
@@ -42,8 +42,6 @@ export class AppComponent implements OnInit {
     this.dialog = _dialog
     this.snackBar = _snackBar
     this.afAuth = _afAuth
-    this.appService.getState().sideNavCollapse = true
-    // document.getElementById('menuSideNavbar')['style']['display'] = 'block';
 
     this.date = new Date()
     setInterval(() => {

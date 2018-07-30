@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { WetulaLibComponent } from './wetula-lib.component';
+import { NgModule } from '@angular/core'
+import { WetulaLibComponent } from './wetula-lib.component'
 
 @NgModule({
-  imports: [
-  ],
+  imports: [],
   declarations: [WetulaLibComponent],
-  exports: [WetulaLibComponent]
+  exports: [WetulaLibComponent],
 })
-export class WetulaLibModule { }
+export class WetulaLibModule {}

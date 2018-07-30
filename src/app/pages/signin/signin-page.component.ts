@@ -30,7 +30,6 @@ export class SigninPageComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.snackBar = _snackBar
-    appService.getState().sideNavCollapse = false
     appService.getState().pageFullScreen = true
     appService.getState().pageFooter = false
 

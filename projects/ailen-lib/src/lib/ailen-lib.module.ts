@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
-import { AilenLibComponent } from './ailen-lib.component';
+import { NgModule } from '@angular/core'
+import { AilenLibComponent } from './ailen-lib.component'
 
 @NgModule({
-  imports: [
-  ],
+  imports: [],
   declarations: [AilenLibComponent],
-  exports: [AilenLibComponent]
+  exports: [AilenLibComponent],
 })
-export class AilenLibModule { }
+export class AilenLibModule {}

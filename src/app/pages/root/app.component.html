@@ -170,7 +170,7 @@
 <mat-sidenav-container>
 
   <!--Side nva bar-->
-  <mat-sidenav fxShow="{{appService.getState().displaySideNav}}" id="menuSideNavbar" style="margin-top: 1%" [class.sidenav-collapse]="appService.getState().sideNavCollapse"
+  <mat-sidenav fxShow="{{router.url != '/pages-signin'}}" id="menuSideNavbar" style="margin-top: 1%" [class.sidenav-collapse]="appService.getState().sideNavCollapse"
     *ngIf="!appService.getState().pageFullScreen" mode="{{appService.getState().sideNavMode}}" opened="{{ appService.getState().sideNavOpen }}"
     position="start" #menusidenav (close)="closeSidenav()" (open)="openSidenav()" (mouseout)="toggleSidenavCollapse()">
     <div class="sidenav-container">
