@@ -1,13 +1,13 @@
-import { FarmersModule } from './farmers.module';
+import { FarmersModule } from './farmers.module'
 
 describe('FarmersModule', () => {
-  let farmersModule: FarmersModule;
+  let farmersModule: FarmersModule
 
   beforeEach(() => {
-    farmersModule = new FarmersModule();
-  });
+    farmersModule = new FarmersModule()
+  })
 
   it('should create an instance', () => {
-    expect(farmersModule).toBeTruthy();
-  });
-});
+    expect(farmersModule).toBeTruthy()
+  })
+})

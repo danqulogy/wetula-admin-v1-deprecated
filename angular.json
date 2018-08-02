@@ -28,6 +28,8 @@
               "node_modules/material-design-icon-fonts/iconfont/material-icons.css",
               "node_modules/metro4-dist/css/metro-all.css",
               "node_modules/metro4-dist/css/third-party/select2.css",
+              "node_modules/primeng/resources/themes/omega/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles/offline-theme-slide.css",
               "src/styles/offline-language-english.css",
               "src/styles/offline-language-english-indicator.css",
@@ -188,87 +190,8 @@
           }
         }
       }
-    },
-    "wetula-lib": {
-      "root": "projects/wetula-lib",
-      "sourceRoot": "projects/wetula-lib/src",
-      "projectType": "library",
-      "prefix": "wlib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/wetula-lib/tsconfig.lib.json",
-            "project": "projects/wetula-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/wetula-lib/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/wetula-lib/src/test.ts",
-            "tsConfig": "projects/wetula-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/wetula-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/wetula-lib/tsconfig.lib.json",
-              "projects/wetula-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "ailen-lib": {
-      "root": "projects/ailen-lib",
-      "sourceRoot": "projects/ailen-lib/src",
-      "projectType": "library",
-      "prefix": "ailen",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ailen-lib/tsconfig.lib.json",
-            "project": "projects/ailen-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/ailen-lib/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ailen-lib/src/test.ts",
-            "tsConfig": "projects/ailen-lib/tsconfig.spec.json",
-            "karmaConfig": "projects/ailen-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ailen-lib/tsconfig.lib.json",
-              "projects/ailen-lib/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
+    
   },
   "defaultProject": "admin"
 }

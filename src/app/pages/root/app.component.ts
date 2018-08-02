@@ -1,11 +1,11 @@
 ///<reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
-import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { DialogThemeComponent } from '../../dialogs/theme-dialog/dialog-theme.component';
-import { AppService } from '../../services/app.service';
-import { MenuMock } from '../../values/menu';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core'
+import { MatDialog, MatSnackBar } from '@angular/material'
+import { Router } from '@angular/router'
+import { AngularFireAuth } from 'angularfire2/auth'
+import { DialogThemeComponent } from '../../dialogs/theme-dialog/dialog-theme.component'
+import { AppService } from '../../services/app.service'
+import { MenuMock } from '../../values/menu'
 
 declare var $: any
 

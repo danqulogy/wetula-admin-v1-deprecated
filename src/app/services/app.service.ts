@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core'
+import { MatSnackBar } from '@angular/material'
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { InternalStateType } from '../interfaces/InternalStateType'
+import { Farmer } from '../models/core/farmer'
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +26,26 @@ export class AppService {
     topNavSubTitle: 'Administrative Console',
     titleColor1: 'fg-green',
     titleColor2: 'fg-darkGreen',
+  }
+
+  private farmersCollection: AngularFirestoreCollection<Farmer>
+  private farmersRef: Observable<Farmer[]>
+  private farmers: Farmer[]
+
+  constructor(private afs: AngularFirestore, private snackBar: MatSnackBar) {
+    this.farmersCollection = this.afs.collection<Farmer>('farmers')
+  }
+
+  getFarmers() {
+    return this.farmersCollection.snapshotChanges().pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Farmer
+          data.id = a.payload.doc.id
+          return data
+        })
+      )
+    )
   }
 
   /**

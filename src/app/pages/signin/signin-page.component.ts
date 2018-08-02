@@ -1,10 +1,10 @@
 ///<reference path="../../../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { AppService } from '../../services/app.service'
+import { FormControl, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material'
 import { Router } from '@angular/router'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { FormControl, Validators } from '@angular/forms'
+import { AppService } from '../../services/app.service'
 import { FormErrorMatcher } from '../../services/error.matcher'
 
 @Component({
@@ -32,8 +32,6 @@ export class SigninPageComponent implements OnInit, OnDestroy {
     this.snackBar = _snackBar
     appService.getState().pageFullScreen = true
     appService.getState().pageFooter = false
-
-    // this.snackBarRef = this.snackBar.open('You are currently logged out. Please sign in to continue!', 'Done', {duration: 5000});
   }
 
   ngOnInit() {}

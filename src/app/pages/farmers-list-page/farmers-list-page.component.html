@@ -1,5 +1,158 @@
 <div class="page-container">
-  <p>
-    farmers-list-page works!
-  </p>
+  <mat-tab-group>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="fa fa-address-book-o example-mat-icon"></i> Farmers Directorate
+      </ng-template>
+      <div class="page-content">
+        <mat-card class="page-card">
+          <mat-toolbar>
+            <span class="text-bold {{appService.getState().titleColor1}}">
+              <i class="fa fa-address-book-o example-mat-icon"></i> {{appService.getState().topNavTitle}}</span>
+
+            <!-- This fills the remaining space of the current row -->
+            <span class="toolbar-filler"></span>
+
+            <div fxLayout="row">
+              <input type='text' placeholder='Type to filter by creditors name...' (keyup)='updateFilter($event)'>
+              <button color="accent" mat-raised-button>
+                <i class="fa fa-file-excel-o"></i>Export </button>
+            </div>
+          </mat-toolbar>
+          <mat-card-content class="bg-lightGray">
+            <p-table [autoLayout]="true" [value]="farmers">
+
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Applicant No.</th>
+                  <th>Reg. No/</th>
+                  <th>Photo</th>
+                  <th>Name</th>
+                  <th>Sex</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-farmer>
+                <tr>
+                  <td>{{farmer.applicant_number}}</td>
+                  <td>{{farmer.registration_number}}</td>
+                  <td>{{farmer.photograph_url}}</td>
+                  <td>{{farmer.surname + " "+ farmer.first_name}}</td>
+                  <td>{{farmer.sex}}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="summary">
+                There are {{farmers?.length}} farmers
+              </ng-template>
+            </p-table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-mat-icon">history</mat-icon> Recent Transactions
+      </ng-template>
+      <h2>Sample tabs</h2>
+      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master
+        cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+        synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan
+        aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+    </mat-tab>
+
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="fa fa-bar-chart example-mat-icon"></i> Summary
+      </ng-template>
+      <h2>Sample tabs</h2>
+      <p>
+        Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table
+        readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy
+        hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi
+        whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't
+        heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.
+      </p>
+    </mat-tab>
+
+
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="fa fa-user-plus example-mat-icon"></i> New Registration
+      </ng-template>
+      <div class="page-content">
+        <mat-card class="page-card">
+          <mat-toolbar>
+            <span class="text-bold {{appService.getState().titleColor1}}">
+              <i class="fa fa-address-book-o example-mat-icon"></i> New Farmer Registration</span>
+
+            <span class="toolbar-filler"></span>
+
+            <div fxLayout="row">
+
+            </div>
+          </mat-toolbar>
+          <mat-card-content>
+            <mat-horizontal-stepper [linear]="true">
+              <mat-step [stepControl]="firstFormGroup" label="Personal">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>
+                    <span>
+                      <i class="fa fa-user"></i> Personal
+                    </span>
+                  </ng-template>
+                  <div>
+                    <mat-form-field>
+                      <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <button mat-button type="button" matStepperPrevious>Back</button>
+                    <span class="toolbar-filler"></span>
+                    <button mat-button type="button" matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step [stepControl]="secondFormGroup" label="Address">
+                <form [formGroup]="secondFormGroup">
+                  <ng-template matStepLabel>Fill out your address</ng-template>
+                  <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step label="Caretaker">
+                Content 3
+              </mat-step>
+              <mat-step label="Bank Info">
+                Content 4
+              </mat-step>
+            </mat-horizontal-stepper>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="fa fa-user-plus example-mat-icon"></i> Owing Accouts
+      </ng-template>
+      <h2>Sample tabs</h2>
+      <p>Food truck fixie locavore, accusamus mcsweeney's marfulla single-origin coffee squid. Exercitation +1 labore velit,
+        blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth
+        letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic,
+        assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore
+        stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry
+        richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo
+        park.
+      </p>
+    </mat-tab>
+  </mat-tab-group>
+
 </div>
