@@ -7,8 +7,8 @@ import { PostalAddress } from '../assistive/postal_address';
 export interface Farmer {
     //Personal
     id?: string
-    applicant_number: number
-    registration_number: number
+    applicant_number?: number
+    registration_number?: number
     surname: string
     first_name: string
     middle_name?: string
@@ -18,8 +18,9 @@ export interface Farmer {
     id_type: string
     id_number: string
     is_absentee_farmer: boolean
+    phone_number: string
     email: string
-    password: string
+    password?: string
     caretaker?: CareTaker
     enterprise_engagement: EnterpriseEngagement[]
     land_parcels: Land[]

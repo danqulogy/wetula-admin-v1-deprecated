@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { MatSort, MatTableDataSource } from '@angular/material'
-import { Router } from '@angular/router'
-import { AngularFireAuth } from 'angularfire2/auth'
-import { Observable } from 'rxjs'
-import { Farmer } from '../../models/core/farmer'
-import { AppService } from '../../services/app.service'
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSort, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs';
+import { Farmer } from '../../models/core/farmer';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-farmers-list-page',
@@ -23,8 +23,10 @@ export class FarmersListPageComponent implements OnInit {
   dataSource = new MatTableDataSource(ELEMENT_DATA)
   @ViewChild(MatSort)
   sort: MatSort
+  genders = ["Male", "Female"]
+  ids = ["Ghana Card", "Voters", "NHIS"]
 
-  firstFormGroup: FormGroup
+  personalFormGroup: FormGroup
   secondFormGroup: FormGroup
 
   activeIndex: number = 1
@@ -41,8 +43,10 @@ export class FarmersListPageComponent implements OnInit {
   ngOnInit() {
     const self = this
 
-    this.firstFormGroup = new FormGroup({
+    this.personalFormGroup = new FormGroup({
       firstCtrl: new FormControl('', Validators.required),
+      genderControl: new FormControl('', Validators.required),
+      idsControl: new FormControl('', Validators.required)
     })
 
     this.secondFormGroup = new FormGroup({
@@ -50,7 +54,7 @@ export class FarmersListPageComponent implements OnInit {
     })
 
     this.appService.getFarmers().subscribe(
-      function(data) {
+      function (data) {
         self.farmers = data
         console.log('Farmers ', data)
       },
@@ -70,7 +74,7 @@ export class FarmersListPageComponent implements OnInit {
     }, 2500)
   }
 
-  updateFilter(event) {}
+  updateFilter(event) { }
 }
 
 export interface PeriodicElement {
