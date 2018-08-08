@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs';
+import { Enterprise } from '../../models/core/enterprise';
 import { Farmer } from '../../models/core/farmer';
 import { AppService } from '../../services/app.service';
 
@@ -16,15 +16,21 @@ import { AppService } from '../../services/app.service';
 export class FarmersListPageComponent implements OnInit {
   farmers: Farmer[]
   temp: Farmer[]
-  farmers$: Observable<Farmer[]>
+  enterprises: Enterprise[]
+  selectedFarmerEnterpriseEngagements: Enterprise;
+  engagementLevels: any[];
+  selectedEngagementLevel: number;
+
+
   loadingIndicator = true
   farmerFormData: Farmer
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol']
   dataSource = new MatTableDataSource(ELEMENT_DATA)
   @ViewChild(MatSort)
   sort: MatSort
-  genders = ["Male", "Female"]
-  ids = ["Ghana Card", "Voters", "NHIS"]
+  genders = ['Male', 'Female']
+  ids = ['Ghana Card', 'Voters', 'NHIS']
+  isAbsenteeFarmer = false;
 
   personalFormGroup: FormGroup
   secondFormGroup: FormGroup
@@ -38,20 +44,53 @@ export class FarmersListPageComponent implements OnInit {
     public afAuth: AngularFireAuth
   ) {
     this.appService.getState().topNavTitle = 'Farmers Directorate'
+    this.engagementLevels = this.appService.getEnterpriseEngagementLevels();
   }
 
   ngOnInit() {
     const self = this
 
     this.personalFormGroup = new FormGroup({
-      firstCtrl: new FormControl('', Validators.required),
+      firstNameCtrl: new FormControl('', Validators.required),
+      surnameCtrl: new FormControl('', Validators.required),
+      middleNameCtrl: new FormControl('', Validators.required),
       genderControl: new FormControl('', Validators.required),
-      idsControl: new FormControl('', Validators.required)
+      birthDateCtrl: new FormControl('', Validators.required),
+      idsControl: new FormControl('', Validators.required),
+      idNumberCtrl: new FormControl('', Validators.required),
+      isAbsenteeCtrl: new FormControl('', Validators.required),
+      phoneCtrl: new FormControl('', Validators.required),
+      caretakerNameCtrl: new FormControl('', Validators.required),
+      caretakerPhoneCtrl: new FormControl('', Validators.required),
+      settlementCtrl: new FormControl('', Validators.required),
+      streetCtrl: new FormControl('', Validators.required),
+      districtCtrl: new FormControl('', Validators.required),
+      houseCtrl: new FormControl('', Validators.required),
+      regionCtrl: new FormControl('', Validators.required),
+      countryCtrl: new FormControl('', Validators.required),
+      postalOfficeCtrl: new FormControl('', Validators.required),
+      postalTownCtrl: new FormControl('', Validators.required),
+      postalStreetCtrl: new FormControl('', Validators.required),
+
     })
+
 
     this.secondFormGroup = new FormGroup({
       secondCtrl: new FormControl('', Validators.required),
     })
+
+    // Observes IsAbsenteeFarmer Control
+    this.personalFormGroup.controls['isAbsenteeCtrl'].valueChanges
+      .subscribe((next) => {
+        document.getElementById("caretaker_info").hidden = !next;
+        this.isAbsenteeFarmer = next;
+      });
+
+    this.appService.getEnterpriseEngagements().subscribe(
+      (data) => {
+        self.enterprises = data;
+      }
+    )
 
     this.appService.getFarmers().subscribe(
       function (data) {
@@ -75,6 +114,10 @@ export class FarmersListPageComponent implements OnInit {
   }
 
   updateFilter(event) { }
+
+  proceedFromPersonalDetails() {
+
+  }
 }
 
 export interface PeriodicElement {

@@ -16,7 +16,23 @@ export class MenuMock {
       title: 'Farmers',
       faIcon: 'fa-users',
       notifyClass: 'bg-warn label',
-      link: '/farmers',
+
+      sub: [
+        {
+          name: 'register_farmer',
+          title: 'New Registration',
+          faIcon: 'fa-users',
+          notifyClass: 'bg-warn label',
+          link: '/farmers/register',
+        },
+        {
+          name: 'browse_farmers',
+          title: 'Directory',
+          faIcon: 'fa-users',
+          notifyClass: 'bg-warn label',
+          link: '/farmers',
+        }
+      ]
     },
     {
       name: 'organizations',
@@ -37,6 +53,26 @@ export class MenuMock {
         {
           name: 'crop_marketers',
           title: 'LBCs',
+          faIcon: 'fa-users',
+        },
+        {
+          name: 'financial',
+          title: 'Finance',
+          faIcon: 'fa-users',
+        },
+        {
+          name: 'cooperatives',
+          title: 'Aggregators/Co-Operatives',
+          faIcon: 'fa-users',
+        },
+        {
+          name: 'equipment',
+          title: 'Equipment Dealers',
+          faIcon: 'fa-users',
+        },
+        {
+          name: 'retailers',
+          title: 'Agri-Retailers',
           faIcon: 'fa-users',
         },
       ],

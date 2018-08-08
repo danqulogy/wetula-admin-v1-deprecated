@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core'
-import { MatSnackBar } from '@angular/material'
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
-import { InternalStateType } from '../interfaces/InternalStateType'
-import { Farmer } from '../models/core/farmer'
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { map } from 'rxjs/operators';
+import { InternalStateType } from '../interfaces/InternalStateType';
+import { Enterprise } from '../models/core/enterprise';
+import { Farmer } from '../models/core/farmer';
+import { EnterpriseEngagementLevel } from '../valueObjects/enterprise_engagement_level';
 
 @Injectable({
   providedIn: 'root',
@@ -29,11 +29,35 @@ export class AppService {
   }
 
   private farmersCollection: AngularFirestoreCollection<Farmer>
-  private farmersRef: Observable<Farmer[]>
-  private farmers: Farmer[]
+  private enterprisesCollection: AngularFirestoreCollection<Enterprise>
 
-  constructor(private afs: AngularFirestore, private snackBar: MatSnackBar) {
+  constructor(private afs: AngularFirestore) {
     this.farmersCollection = this.afs.collection<Farmer>('farmers')
+    this.enterprisesCollection = this.afs.collection<Enterprise>('enterprises')
+  }
+
+
+  getEnterpriseEngagementLevels() {
+    return [
+      {
+        label: "Major",
+        value: EnterpriseEngagementLevel.Major
+      },
+      {
+        label: "Minor",
+        value: EnterpriseEngagementLevel.Minor
+      }
+    ]
+  }
+
+  getEnterpriseEngagements() {
+    return this.enterprisesCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Enterprise
+        data.id = a.payload.doc.id
+        return data
+      }))
+    )
   }
 
   getFarmers() {

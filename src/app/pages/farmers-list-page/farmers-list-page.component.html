@@ -95,7 +95,7 @@
             </div>
           </mat-toolbar>
           <mat-card-content>
-            <mat-horizontal-stepper [linear]="true">
+            <mat-horizontal-stepper [linear]="false">
               <ng-template matStepperIcon="edit">
                 <mat-icon>check</mat-icon>
               </ng-template>
@@ -106,7 +106,7 @@
 
               <!-- Custom icon with a context variable. -->
               <ng-template matStepperIcon="number" let-index="index">
-                {{index+1}}
+                <span class="fg-white">{{index+1}}</span>
               </ng-template>
 
               <mat-step [stepControl]="personalFormGroup">
@@ -116,8 +116,8 @@
                       <i class="fa fa-user"></i> Personal
                     </span>
                   </ng-template>
-                  <div fxLayout="row" fxLayoutAlign="center">
-                    <mat-card>
+                  <div class="d-flex">
+                    <mat-card class="w-50 mr-4">
                       <mat-card-content>
                         <div fxLayout="row">
                           <div fxLayout="column">
@@ -125,21 +125,21 @@
                             <!-- TODO: Make the image clickable and trigger file dialog there -->
                             <!-- <button mat-raised-button>Upload Photo</button> -->
                           </div>
-                          <div fxLayout="column">
+                          <div class="w-75" fxLayout="column">
                             <mat-form-field>
-                              <input matInput placeholder="First Name" formControlName="firstCtrl" required>
+                              <input matInput placeholder="First Name" formControlName="firstNameCtrl" required>
                             </mat-form-field>
                             <mat-form-field>
-                              <input matInput placeholder="Surname" required>
+                              <input matInput formControlName="surnameCtrl" placeholder="Surname" required>
                             </mat-form-field>
                             <mat-form-field>
-                              <input matInput placeholder="Middle Name" required>
+                              <input matInput formControlName="middleNameCtrl" placeholder="Middle Name" required>
                             </mat-form-field>
                           </div>
                         </div>
                         <div fxLayout="column">
                           <div fxLayout="row">
-                            <mat-form-field class="mr-8">
+                            <mat-form-field class="w-50 mr-8">
                               <mat-select placeholder="Gender" formControlName="genderControl" required>
                                 <mat-option>--</mat-option>
                                 <mat-option *ngFor="let gender of genders" [value]="gender">
@@ -149,14 +149,14 @@
                               <!-- <mat-error *ngIf="genderControl.hasError('required')">Please choose a gender</mat-error> -->
                               <!-- <mat-hint>{{genderControl.value}}</mat-hint> -->
                             </mat-form-field>
-                            <mat-form-field>
-                              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                            <mat-form-field class="w-50">
+                              <input matInput [matDatepicker]="picker" formControlName="birthDateCtrl" placeholder="Choose birth date">
                               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                               <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
                           </div>
                           <div fxLayout="row">
-                            <mat-form-field class="mr-8">
+                            <mat-form-field class="w-50 mr-8">
                               <mat-select placeholder="Identification Card Type" formControlName="idsControl" required>
                                 <mat-option>--</mat-option>
                                 <mat-option *ngFor="let id of ids" [value]="id">
@@ -164,53 +164,53 @@
                                 </mat-option>
                               </mat-select>
                             </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="ID Card Number">
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="idNumberCtrl" placeholder="ID Card Number">
                             </mat-form-field>
                           </div>
                           <div fxLayout="row">
-                            <mat-checkbox class="mr-11 mt-2">Is an Absentee Farmer</mat-checkbox>
-                            <mat-form-field>
-                              <input matInput placeholder="Phone number">
+                            <mat-checkbox #isAbsentee formControlName="isAbsenteeCtrl" class="mr-11 w-50 mt-2">Is an Absentee Farmer</mat-checkbox>
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="phoneCtrl" placeholder="Phone number">
                             </mat-form-field>
                           </div>
-                          <div fxLayout="row">
-                            <mat-form-field class="mr-8">
-                              <input matInput placeholder="Caretaker Name">
+                          <div fxLayout="row" [hidden]="true" id="caretaker_info">
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="caretakerNameCtrl" placeholder="Caretaker Name">
                             </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="Caretaker Phone number">
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="caretakerPhoneCtrl" placeholder="Caretaker Phone number">
                             </mat-form-field>
                           </div>
                         </div>
                       </mat-card-content>
                     </mat-card>
-                    <mat-card>
+                    <mat-card class="w-50 ml-4">
                       <fieldset appearance="outline">
                         <legend>Physical Address</legend>
                         <div fxLayout="column">
                           <div fxLayout="row">
-                            <mat-form-field class="mr-8">
-                              <input matInput placeholder="Town/Village/Settlement">
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="settlementCtrl" placeholder="Town/Village/Settlement">
                             </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="Street/Trace Address">
-                            </mat-form-field>
-                          </div>
-                          <div fxLayout="row">
-                            <mat-form-field class="mr-8">
-                              <input matInput placeholder="District/Province">
-                            </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="House Number">
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="streetCtrl" placeholder="Street/Trace Address">
                             </mat-form-field>
                           </div>
                           <div fxLayout="row">
-                            <mat-form-field class="mr-8">
-                              <input matInput placeholder="Region">
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="districtCtrl" placeholder="District/Province">
                             </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="Country">
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="houseCtrl" placeholder="House Number">
+                            </mat-form-field>
+                          </div>
+                          <div fxLayout="row">
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="regionCtrl" placeholder="Region">
+                            </mat-form-field>
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="countryCtrl" placeholder="Country">
                             </mat-form-field>
                           </div>
                         </div>
@@ -219,54 +219,75 @@
                         <legend>Postal Address</legend>
                         <div fxLayout="column">
                           <div fxLayout="row">
-                            <mat-form-field class="mr-8">
-                              <input matInput placeholder="Town/Village/Settlement">
-                            </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="Street/Trace Address">
+                            <mat-form-field style="width: 100%" class="mr-8">
+                              <input matInput formControlName="postalOfficeCtrl" placeholder="Town/Village/Settlement">
                             </mat-form-field>
                           </div>
                           <div fxLayout="row">
-                            <mat-form-field class="mr-8">
-                              <input matInput placeholder="District/Province">
+                            <mat-form-field style="width: 100%" class="mr-8">
+                              <input matInput formControlName="postalTownCtrl" placeholder="District/Province">
                             </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="House Number">
-                            </mat-form-field>
+
                           </div>
                           <div fxLayout="row">
-                            <mat-form-field class="mr-8">
-                              <input matInput placeholder="Region">
-                            </mat-form-field>
-                            <mat-form-field>
-                              <input matInput placeholder="Country">
+                            <mat-form-field style="width: 100%" class="mr-8">
+                              <input matInput formControlName="postalStreetCtrl" placeholder="District/Province">
                             </mat-form-field>
                           </div>
+
                         </div>
                       </fieldset>
                     </mat-card>
 
                   </div>
-                  <div>
-                    <button mat-button type="button" matStepperPrevious>Back</button>
+                  <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
+                    <!-- <button mat-raised-button color="accent" type="button" matStepperPrevious>Back</button> -->
                     <span class="toolbar-filler"></span>
-                    <button mat-button type="button" matStepperNext>Next</button>
+                    <button mat-raised-button type="button" color="accent" (click)="proceedFromPersonalDetails()" matStepperNext> Continue
+                      <i class="fa fa-chevron-right"></i>
+                    </button>
                   </div>
                 </form>
               </mat-step>
-              <mat-step [stepControl]="secondFormGroup">
+              <mat-step style="height: 1200px" [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
                   <ng-template matStepLabel>
                     <span>
                       <i class="fa fa-cubes"></i> Enterprise
                     </span>
                   </ng-template>
-                  <mat-form-field>
-                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
-                  </mat-form-field>
                   <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <mat-card>
+                      <fieldset>
+
+                        <div class="d-flex">
+                          <legend class="fg-orange pt-4 pr-4">Add Enterprise Engagement</legend>
+                          <mat-form-field class="w-25 mr-8">
+                            <mat-select placeholder="Enterprise Category" required>
+                              <mat-option>--- select category ---</mat-option>
+                              <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.name">
+                                {{enterprise.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <mat-form-field class="w-25 mr-8">
+                            <mat-select placeholder="Enterprise Category" required>
+                              <mat-option>--- select level ---</mat-option>
+                              <mat-option *ngFor="let level of engagementLevels" [value]="level.value">
+                                {{level.label}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <button mat-raised-button color="accent" style="width: 200px; height: 40px !important;">
+                            <i class="fa fa-plus"></i> Add Engagement</button>
+                        </div>
+
+                      </fieldset>
+                    </mat-card>
+                  </div>
+                  <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
+                    <button mat-button color="accent" matStepperPrevious>Back</button>
+                    <button mat-button color="accent" matStepperNext>Next</button>
                   </div>
                 </form>
               </mat-step>

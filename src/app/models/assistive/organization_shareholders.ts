@@ -1,3 +1,3 @@
-export interface OrganizationShareholder{
+export interface OrganizationShareholder {
   name: string
 }
