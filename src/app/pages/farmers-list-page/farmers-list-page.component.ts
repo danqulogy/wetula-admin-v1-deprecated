@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -20,11 +19,11 @@ export class FarmersListPageComponent implements OnInit {
 
   farmers: Farmer[]
   // private dataSource
-  private farmers$: BehaviorSubject<Farmer[]> = new BehaviorSubject(this.farmers);
+  private farmers$: BehaviorSubject<Farmer[]> = null;
   // public observable for table
   farmersDataSource$: Observable<Farmer[]>;
   // Table Columns
-  columns = farmerTableColumnNames;
+  displayedColumns$ = new BehaviorSubject<string[]>(farmerTableColumnNames);
 
 
 
@@ -38,8 +37,6 @@ export class FarmersListPageComponent implements OnInit {
 
   loadingIndicator = true
   farmerFormData: Farmer
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol']
-  sort: MatSort
   genders = ['Male', 'Female']
   ids = ['Ghana Card', 'Voters', 'NHIS']
   isAbsenteeFarmer = false
@@ -102,8 +99,10 @@ export class FarmersListPageComponent implements OnInit {
     this.appService.getFarmers().subscribe(
       function (data) {
         self.farmers = data
-        // self.farmers$ = new BehaviorSubject(this.farmers);
-        // Transform the data the way you want it
+        self.farmers$ = new BehaviorSubject(self.farmers);
+
+        self.farmersDataSource$ = self.farmers$.pipe(map(v => Object.values(v)));
+        self.farmersDataSource$.subscribe(console.log);
 
         console.log('Farmers ', data)
       },
@@ -111,7 +110,8 @@ export class FarmersListPageComponent implements OnInit {
         console.log('Error getting farmers')
       }
     )
-    this.farmersDataSource$ = this.farmers$.pipe(map(v => Object.values(v)));
+
+
 
   }
 
@@ -153,12 +153,12 @@ export class FarmersListPageComponent implements OnInit {
 }
 
 export const farmerTableColumnNames = [
-  'Applicant Number',
-  'Name',
-  'Gender',
-  'Date of Birth',
-  'Absentee Farmer',
-  'Phone number',
+  'applicantNumber',
+  'name',
+  'gender',
+  'gender',
+  'absenteeFarmer',
+  'phoneNumber',
   'email',
-  'Number of Lands'
+  'numberOfLands'
 ]

@@ -21,6 +21,16 @@
             </div>
           </mat-toolbar>
           <mat-card-content class="bg-lightGray">
+            <table cdk-table [dataSource]="farmersDataSource$">
+              <tr cdk-header-row *cdkHeaderRowDef="columns"></tr>
+              <tr cdk-row *cdkRowDef="let row; columns: columns"></tr>
+              <!-- Applicant Number column -->
+              <ng-container cdkColumnDef="applicantNumber">
+                <th cdk-header-cell *cdkHeaderCellDef>Applicant Number</th>
+                <td cdk-cell *cdkCellDef="let row">{{row.applicantNumber}}</td>
+              </ng-container>
+            </table>
+            <span>Text {{farmersDataSource$|async}}</span>
             <p-table [autoLayout]="true" [value]="farmers">
 
               <ng-template pTemplate="header">
