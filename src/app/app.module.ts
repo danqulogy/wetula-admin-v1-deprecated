@@ -1,4 +1,5 @@
 import { LayoutModule } from '@angular/cdk/layout';
+import { CdkTableModule } from '@angular/cdk/table';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -10,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import 'hammerjs';
 import { DropdownModule } from 'primeng/dropdown';
 import { StepsModule } from 'primeng/steps';
@@ -25,8 +26,6 @@ import { AppComponent } from './pages/root/app.component';
 import { SigninPageComponent } from './pages/signin/signin-page.component';
 import { AppService } from './services/app.service';
 import { FormErrorMatcher } from './services/error.matcher';
-
-
 
 @NgModule({
   declarations: [
@@ -43,9 +42,11 @@ import { FormErrorMatcher } from './services/error.matcher';
     BrowserAnimationsModule,
     DropdownModule,
     TableModule,
+    CdkTableModule,
     HttpClientModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     MaterialModule,
     RouterModule.forRoot(ROUTES, { useHash: true, enableTracing: false }),
     LayoutModule,

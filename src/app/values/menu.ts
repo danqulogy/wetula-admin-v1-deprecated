@@ -31,8 +31,8 @@ export class MenuMock {
           faIcon: 'fa-users',
           notifyClass: 'bg-warn label',
           link: '/farmers',
-        }
-      ]
+        },
+      ],
     },
     {
       name: 'organizations',

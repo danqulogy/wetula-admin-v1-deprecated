@@ -31,3 +31,17 @@ body {
   font-weight: 800;
   color: #FA6800 !important;
 }
+
+mat-basic-chip {
+  background: #4CAF50;
+  border-radius: 16px;
+  padding: 4px;
+  color: white;
+  padding-left: 8px !important;
+  margin: 4px;
+}
+
+.chip-enterprise {
+  font-weight: bold;
+  text-transform: uppercase !important;
+}

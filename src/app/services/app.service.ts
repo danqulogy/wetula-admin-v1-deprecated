@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { map } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 import { InternalStateType } from '../interfaces/InternalStateType';
 import { Enterprise } from '../models/core/enterprise';
 import { Farmer } from '../models/core/farmer';
@@ -28,40 +29,44 @@ export class AppService {
     titleColor2: 'fg-darkGreen',
   }
 
-  private farmersCollection: AngularFirestoreCollection<Farmer>
   private enterprisesCollection: AngularFirestoreCollection<Enterprise>
+  private farmersSource$: Observable<DocumentChangeAction<Farmer>[]>
+  private enterprisesSource$: Observable<DocumentChangeAction<Enterprise>[]>
 
   constructor(private afs: AngularFirestore) {
-    this.farmersCollection = this.afs.collection<Farmer>('farmers')
-    this.enterprisesCollection = this.afs.collection<Enterprise>('enterprises')
-  }
+    this.farmersSource$ = this.afs.collection<Farmer>('farmers').snapshotChanges().pipe(shareReplay(1));
+    this.enterprisesSource$ = this.afs.collection<Enterprise>('enterprises').snapshotChanges().pipe(shareReplay(1));
 
+    // this.enterprisesCollection = this.afs.collection<Enterprise>('enterprises')
+  }
 
   getEnterpriseEngagementLevels() {
     return [
       {
-        label: "Major",
-        value: EnterpriseEngagementLevel.Major
+        label: 'Major',
+        value: EnterpriseEngagementLevel.Major,
       },
       {
-        label: "Minor",
-        value: EnterpriseEngagementLevel.Minor
-      }
+        label: 'Minor',
+        value: EnterpriseEngagementLevel.Minor,
+      },
     ]
   }
 
   getEnterpriseEngagements() {
-    return this.enterprisesCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Enterprise
-        data.id = a.payload.doc.id
-        return data
-      }))
+    return this.enterprisesSource$.pipe(
+      map(actions =>
+        actions.map(a => {
+          const data = a.payload.doc.data() as Enterprise
+          data.id = a.payload.doc.id
+          return data
+        })
+      )
     )
   }
 
   getFarmers() {
-    return this.farmersCollection.snapshotChanges().pipe(
+    return this.farmersSource$.pipe(
       map(actions =>
         actions.map(a => {
           const data = a.payload.doc.data() as Farmer

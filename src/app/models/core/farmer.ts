@@ -1,9 +1,10 @@
-import { Gender } from '../../valueObjects/Gender'
-import { CareTaker } from '../assistive/caretaker'
-import { EnterpriseEngagement } from '../assistive/enterprise_engagement'
-import { Land } from '../assistive/land'
-import { PhysicalAddress } from '../assistive/physical_address'
-import { PostalAddress } from '../assistive/postal_address'
+import { Gender } from '../../valueObjects/Gender';
+import { CareTaker } from '../assistive/caretaker';
+import { EnterpriseEngagement } from '../assistive/enterprise_engagement';
+import { Land } from '../assistive/land';
+import { PhysicalAddress } from '../assistive/physical_address';
+import { PostalAddress } from '../assistive/postal_address';
+
 export interface Farmer {
   //Personal
   id?: string
@@ -32,4 +33,5 @@ export interface Farmer {
   // Attachments
   photograph_url: string
   applicant_signage_url: string
+  number_of_lands?: number
 }
