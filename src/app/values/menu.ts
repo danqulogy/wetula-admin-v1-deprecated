@@ -77,12 +77,12 @@ export class MenuMock {
         },
       ],
     },
-    // {
-    //   name: 'customers',
-    //   title: 'Customers',
-    //   faIcon: 'fa-users',
-    //   notifyClass: 'bg-warn label',
-    // },
+    {
+      name: 'enterprises',
+      title: 'Enterprise',
+      faIcon: 'fa-cubes',
+      link: '/enterprises',
+    },
     {
       name: 'suppliers',
       title: 'Reports',

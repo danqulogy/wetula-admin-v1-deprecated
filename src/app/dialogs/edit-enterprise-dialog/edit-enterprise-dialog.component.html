@@ -1,0 +1,17 @@
+<div class="settings-dialog">
+  <h1 class="text-light" mat-dialog-title>
+    <i class="fa fa-edit"></i> Edit Enterprise Engagement</h1>
+  <div mat-dialog-content>
+    <mat-form-field class="w-100">
+      <input matInput name="enterpriseName" [(ngModel)]="selectedEnterpriseName" placeholder="Edit enterprise name">
+    </mat-form-field>
+    <mat-divider style="margin-top: 8px; margin-bottom: 8px"></mat-divider>
+
+    <button (click)="updateEnterprise()" class="w-100" color="accent" mat-raised-button>
+      <span class="fa fa-save"></span> Save Changes
+    </button>
+
+
+    <br>
+  </div>
+</div>

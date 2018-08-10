@@ -17,26 +17,16 @@
             <div fxLayout="row">
               <input type='text' placeholder='Type to filter by creditors name...' (keyup)='updateFilter($event)'>
               <button color="accent" mat-raised-button>
-                <i class="fa fa-file-excel-o"></i>Export </button>
+                <i class="fa fa-file-excel-o"></i>Export
+              </button>
             </div>
           </mat-toolbar>
           <mat-card-content class="bg-lightGray">
-            <table cdk-table [dataSource]="farmersDataSource$">
-              <tr cdk-header-row *cdkHeaderRowDef="columns"></tr>
-              <tr cdk-row *cdkRowDef="let row; columns: columns"></tr>
-              <!-- Applicant Number column -->
-              <ng-container cdkColumnDef="applicantNumber">
-                <th cdk-header-cell *cdkHeaderCellDef>Applicant Number</th>
-                <td cdk-cell *cdkCellDef="let row">{{row.applicantNumber}}</td>
-              </ng-container>
-            </table>
-            <span>Text {{farmersDataSource$|async}}</span>
             <p-table [autoLayout]="true" [value]="farmers">
-
               <ng-template pTemplate="header">
                 <tr>
                   <th>Applicant No.</th>
-                  <th>Reg. No/</th>
+                  <th>Reg. No.</th>
                   <th>Photo</th>
                   <th>Name</th>
                   <th>Sex</th>
@@ -272,7 +262,7 @@
                         <div class="d-flex">
                           <legend class="fg-orange pt-4 pr-4">Add Enterprise Engagement</legend>
                           <mat-form-field class="w-25 mr-8">
-                            <mat-select placeholder="Enterprise Category" name="enterpriseCategory" required [(ngModel)]="selectedFarmerEnterpriseEngagement">
+                            <mat-select placeholder="Enterprise Category" name="enterpriseCategory" required [(ngModel)]="selectedEnterprise">
                               <mat-option>--- select category ---</mat-option>
                               <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.name">
                                 {{enterprise.name}}
@@ -282,12 +272,13 @@
                           <mat-form-field class="w-25 mr-8">
                             <mat-select placeholder="Enterprise Category" name="engagementLevel" [(ngModel)]="selectedEngagementLevel" required>
                               <mat-option>--- select level ---</mat-option>
-                              <mat-option *ngFor="let level of engagementLevels" [value]="level.value">
-                                {{level.label}}
+                              <mat-option *ngFor="let level of enterpriseEngagementLevels" [value]="level">
+                                {{level}}
                               </mat-option>
                             </mat-select>
                           </mat-form-field>
-                          <button mat-raised-button type="submit" (click)="addEnterpriseEngagment()" color="accent" style="width: 200px; height: 40px !important;">
+                          <button mat-raised-button type="submit" [disabled]="addEnterpriseForm.invalid" (click)="addEnterpriseEngagment()" color="accent"
+                            style="width: 200px; height: 40px !important;">
                             <i class="fa fa-plus"></i> Add Engagement</button>
                         </div>
 
@@ -296,10 +287,10 @@
                     <mat-card>
                       <mat-card-content>
                         <mat-chip-list>
-                          <mat-basic-chip color="accent">
-                            <span class="chip-enterprise text-upper">ANIMAL HUSBANdry</span>&nbsp;
-                            <span class="chip-engagement-level">(Major)</span>
-                            <button mat-icon-button>
+                          <mat-basic-chip *ngFor="let item of currentEngagementList" color="accent">
+                            <span class="chip-enterprise text-upper">{{item.enterprise_name}}</span>&nbsp;
+                            <span class="chip-engagement-level">({{item.engagement_level}})</span>
+                            <button (click)="removeEnterpriseEngagement(item)" mat-icon-button>
                               <i class="fa fa-remove"></i>
                             </button>
                           </mat-basic-chip>

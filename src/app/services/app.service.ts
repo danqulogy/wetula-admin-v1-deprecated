@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { Notifier } from '../core/notifications/notifier';
 import { InternalStateType } from '../interfaces/InternalStateType';
 import { Enterprise } from '../models/core/enterprise';
 import { Farmer } from '../models/core/farmer';
-import { EnterpriseEngagementLevel } from '../valueObjects/enterprise_engagement_level';
+
+declare var $: any
 
 @Injectable({
   providedIn: 'root',
@@ -28,29 +31,26 @@ export class AppService {
     titleColor1: 'fg-green',
     titleColor2: 'fg-darkGreen',
   }
-
-  private enterprisesCollection: AngularFirestoreCollection<Enterprise>
+  selectedEnterprise: Enterprise = null
   private farmersSource$: Observable<DocumentChangeAction<Farmer>[]>
+  private enterpriseCollection: AngularFirestoreCollection<Enterprise>
   private enterprisesSource$: Observable<DocumentChangeAction<Enterprise>[]>
 
-  constructor(private afs: AngularFirestore) {
-    this.farmersSource$ = this.afs.collection<Farmer>('farmers').snapshotChanges().pipe(shareReplay(1));
-    this.enterprisesSource$ = this.afs.collection<Enterprise>('enterprises').snapshotChanges().pipe(shareReplay(1));
+  constructor(private afs: AngularFirestore, private snackBar: MatSnackBar) {
+    this.farmersSource$ = this.afs
+      .collection<Farmer>('farmers')
+      .snapshotChanges()
+      .pipe(shareReplay(1))
 
-    // this.enterprisesCollection = this.afs.collection<Enterprise>('enterprises')
+    this.enterpriseCollection = this.afs.collection<Enterprise>('enterprises')
+
+    this.enterprisesSource$ = this.enterpriseCollection
+      .snapshotChanges()
+      .pipe(shareReplay(1))
   }
 
   getEnterpriseEngagementLevels() {
-    return [
-      {
-        label: 'Major',
-        value: EnterpriseEngagementLevel.Major,
-      },
-      {
-        label: 'Minor',
-        value: EnterpriseEngagementLevel.Minor,
-      },
-    ]
+    return ['Major', 'Minor']
   }
 
   getEnterpriseEngagements() {
@@ -64,6 +64,17 @@ export class AppService {
       )
     )
   }
+  addEnterprise(enterprise: Enterprise) {
+    return this.enterpriseCollection.add(enterprise);
+  }
+
+  updateEnterpriseDetail(enterprise: Enterprise) {
+    return this.enterpriseCollection.doc(enterprise.id).update(enterprise)
+  }
+
+  deleteEnterprise(enterprise: Enterprise) {
+    return this.enterpriseCollection.doc(enterprise.id).delete()
+  }
 
   getFarmers() {
     return this.farmersSource$.pipe(
@@ -75,6 +86,24 @@ export class AppService {
         })
       )
     )
+  }
+
+  openSnackBar(message: string, action: string): MatSnackBarRef<SimpleSnackBar> {
+    return this.snackBar.open(message, action, {
+      duration: 10000,
+    })
+  }
+
+  notify(message: Notifier) {
+    $.Notify({
+      caption: message.caption,
+      content: message.content,
+      icon: message.icon,
+      type: message.type,
+      keepOpen: message.keepOpen,
+      shadow: message.shadow,
+      timeout: message.timeout,
+    })
   }
 
   /**

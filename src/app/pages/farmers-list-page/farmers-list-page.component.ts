@@ -1,13 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { EnterpriseEngagement } from '../../models/assistive/enterprise_engagement';
-import { Enterprise } from '../../models/core/enterprise';
-import { Farmer } from '../../models/core/farmer';
-import { AppService } from '../../services/app.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { AngularFireAuth } from 'angularfire2/auth'
+import * as _ from 'underscore'
+import { EnterpriseEngagement } from '../../models/assistive/enterprise_engagement'
+import { Enterprise } from '../../models/core/enterprise'
+import { Farmer } from '../../models/core/farmer'
+import { AppService } from '../../services/app.service'
 
 @Component({
   selector: 'app-farmers-list-page',
@@ -16,24 +15,17 @@ import { AppService } from '../../services/app.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class FarmersListPageComponent implements OnInit {
+  // Farmers Listings
+  columns = farmerTableColumnNames
 
+  // Farmer registration
   farmers: Farmer[]
-  // private dataSource
-  private farmers$: BehaviorSubject<Farmer[]> = null;
-  // public observable for table
-  farmersDataSource$: Observable<Farmer[]>;
-  // Table Columns
-  displayedColumns$ = new BehaviorSubject<string[]>(farmerTableColumnNames);
-
-
-
-  temp: Farmer[]
   enterprises: Enterprise[]
-  selectedFarmerEnterpriseEngagement: Enterprise
-  selectedEnterpriseEngagements: EnterpriseEngagement[] = [];
+  enterpriseEngagementLevels: string[]
 
-  engagementLevels: any[]
-  selectedEngagementLevel: number
+  selectedEnterprise: string
+  selectedEngagementLevel: string
+  currentEngagementList: EnterpriseEngagement[] = []
 
   loadingIndicator = true
   farmerFormData: Farmer
@@ -53,7 +45,7 @@ export class FarmersListPageComponent implements OnInit {
     public afAuth: AngularFireAuth
   ) {
     this.appService.getState().topNavTitle = 'Farmers Directorate'
-    this.engagementLevels = this.appService.getEnterpriseEngagementLevels()
+    this.enterpriseEngagementLevels = this.appService.getEnterpriseEngagementLevels()
   }
 
   ngOnInit() {
@@ -97,12 +89,8 @@ export class FarmersListPageComponent implements OnInit {
     })
 
     this.appService.getFarmers().subscribe(
-      function (data) {
+      function(data) {
         self.farmers = data
-        self.farmers$ = new BehaviorSubject(self.farmers);
-
-        self.farmersDataSource$ = self.farmers$.pipe(map(v => Object.values(v)));
-        self.farmersDataSource$.subscribe(console.log);
 
         console.log('Farmers ', data)
       },
@@ -110,9 +98,6 @@ export class FarmersListPageComponent implements OnInit {
         console.log('Error getting farmers')
       }
     )
-
-
-
   }
 
   initialize() {
@@ -126,39 +111,55 @@ export class FarmersListPageComponent implements OnInit {
   }
 
   addEnterpriseEngagment() {
-    console.log(this.selectedFarmerEnterpriseEngagement);
-
-    // var ee: EnterpriseEngagement = {};
-    // ee.engagement_level = this.selectedEngagementLevel;
-    // ee.enterprise.name = "gfg";
-  }
-
-  updateFilter(event) { }
-
-  proceedFromPersonalDetails() { }
-
-  levelUp(farmerApplicantNumber: string) {
-    const updatedFarmer: Farmer = this.farmers$.value[farmerApplicantNumber];
-    if (updatedFarmer.number_of_lands) {
-      updatedFarmer.number_of_lands++
+    var item = {
+      enterprise_name: this.selectedEnterprise,
+      engagement_level: this.selectedEngagementLevel,
+    }
+    var found = _.findWhere(this.currentEngagementList, {
+      enterprise_name: this.selectedEnterprise,
+    })
+    if (found) {
+      this.appService.openSnackBar('Already Added', 'Done')
     } else {
-      updatedFarmer.number_of_lands = 0
+      this.currentEngagementList.push(item)
     }
 
-    const newFarmerData = { ...this.farmers.values[farmerApplicantNumber], [farmerApplicantNumber]: updatedFarmer }
-
-    // Push into the stream
-    this.farmers$.next(newFarmerData);
+    console.log(this.currentEngagementList)
   }
+
+  removeEnterpriseEngagement(item: EnterpriseEngagement) {
+    this.currentEngagementList = _.without(this.currentEngagementList, item)
+    this.appService.openSnackBar('Removed', 'Done')
+  }
+
+  updateFilter(event) {}
+
+  proceedFromPersonalDetails() {}
 }
 
 export const farmerTableColumnNames = [
-  'applicantNumber',
-  'name',
-  'gender',
-  'gender',
-  'absenteeFarmer',
-  'phoneNumber',
-  'email',
-  'numberOfLands'
+  {
+    field: 'applicant_number',
+    header: 'Applicant Number',
+  },
+  {
+    field: 'first_name',
+    header: 'First Name',
+  },
+  {
+    field: 'sex',
+    header: 'Gender',
+  },
+  {
+    field: 'date_of_birth',
+    header: 'Date of Birth',
+  },
+  {
+    field: 'phone_number',
+    header: 'Phone Number',
+  },
+  {
+    field: 'email',
+    header: 'Email',
+  },
 ]

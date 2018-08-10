@@ -1,0 +1,23 @@
+<div class="settings-dialog">
+  <h1 class="text-light" mat-dialog-title>
+    <i class="fa fa-edit"></i> Delete
+    <span class="fg fg-green">{{selectedEnterpriseName}}</span>
+  </h1>
+  <p class="fg-red">This action will permanently remove the entreprise from storage.</p>
+  <div mat-dialog-content>
+    <!-- <mat-form-field class="w-100">
+      <input matInput name="enterpriseName" [(ngModel)]="selectedEnterpriseName" placeholder="Enter your pin">
+    </mat-form-field> -->
+    <mat-divider style="margin-top: 8px; margin-bottom: 8px"></mat-divider>
+
+    <button (click)="deleteEnterprise()" class="mt-2 w-100" color="warn" mat-stroked-button>
+      <span class="fa fa-remove"></span> Yes, Delete
+    </button>
+    <button (click)="close()" class="mt-2 w-100" color="primary" mat-stroked-button>
+      <span class="fa fa-stop"></span> Cancel
+    </button>
+
+
+    <br>
+  </div>
+</div>

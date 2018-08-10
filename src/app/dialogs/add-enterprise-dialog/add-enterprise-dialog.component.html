@@ -1,0 +1,17 @@
+<form #addEnterpriseForm=ngForm class="settings-dialog">
+  <h1 class="text-light" mat-dialog-title>
+    <i class="fa fa-plus"></i> New Enterprise Engagement</h1>
+  <div mat-dialog-content>
+    <mat-form-field class="w-100">
+      <input matInput name="enterpriseName" required [(ngModel)]="enterpriseName" placeholder="Enterprise name">
+    </mat-form-field>
+    <mat-divider style="margin-top: 8px; margin-bottom: 8px"></mat-divider>
+
+    <button [disabled]="addEnterpriseForm.invalid" type="submit" (click)="addEnterprise()" class="w-100" color="accent" mat-raised-button>
+      <span class="fa fa-save"></span> Add
+    </button>
+
+
+    <br>
+  </div>
+</form>

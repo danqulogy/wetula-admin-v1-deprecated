@@ -1,10 +1,10 @@
-import { OrganizationAffiliateLevel } from 'src/app/models/assistive/organization_affiliate_levels'
-import { OrganizationManagementPerson } from 'src/app/models/assistive/organization_management_person'
 import { BankAccount } from '../assistive/bank_account'
 import { EnterpriseEngagement } from '../assistive/enterprise_engagement'
+import { OrganizationAffiliateLevel } from '../assistive/organization_affiliate_levels'
 import { OrganizationContactPerson } from '../assistive/organization_contact_person'
 import { OrganizationDirector } from '../assistive/organization_director'
 import { OrganizationHead } from '../assistive/organization_head'
+import { OrganizationManagementPerson } from '../assistive/organization_management_person'
 import { OrganizationShareholder } from '../assistive/organization_shareholders'
 export interface Organization {
   id?: string
