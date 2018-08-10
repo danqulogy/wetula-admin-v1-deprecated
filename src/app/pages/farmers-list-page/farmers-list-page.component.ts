@@ -1,12 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { AngularFireAuth } from 'angularfire2/auth'
-import * as _ from 'underscore'
-import { EnterpriseEngagement } from '../../models/assistive/enterprise_engagement'
-import { Enterprise } from '../../models/core/enterprise'
-import { Farmer } from '../../models/core/farmer'
-import { AppService } from '../../services/app.service'
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as _ from 'underscore';
+import { EnterpriseEngagement } from '../../models/assistive/enterprise_engagement';
+import { Land } from '../../models/assistive/land';
+import { Enterprise } from '../../models/core/enterprise';
+import { Farmer } from '../../models/core/farmer';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-farmers-list-page',
@@ -15,6 +17,11 @@ import { AppService } from '../../services/app.service'
   encapsulation: ViewEncapsulation.None,
 })
 export class FarmersListPageComponent implements OnInit {
+  @ViewChild(MatPaginator)
+  landsPaginator: MatPaginator
+  @ViewChild(MatSort)
+  landsSort: MatSort
+
   // Farmers Listings
   columns = farmerTableColumnNames
 
@@ -27,6 +34,19 @@ export class FarmersListPageComponent implements OnInit {
   selectedEngagementLevel: string
   currentEngagementList: EnterpriseEngagement[] = []
 
+  landColumns = ['address', 'size_area', 'region', 'district', 'locality', 'tenureship_model', 'actions']
+  currentLandList: Land[] = [
+    {
+      address: "Asaasebonano",
+      size_area: "20 Acres",
+      region: "Ashanti",
+      district: "Ejura-Sekyedumase",
+      locality: "Broadcasting"
+    }
+  ]
+  selectedLand: Land
+  landsDataSource
+
   loadingIndicator = true
   farmerFormData: Farmer
   genders = ['Male', 'Female']
@@ -34,7 +54,7 @@ export class FarmersListPageComponent implements OnInit {
   isAbsenteeFarmer = false
 
   personalFormGroup: FormGroup
-  secondFormGroup: FormGroup
+  enterprisesFormGroup: FormGroup
 
   activeIndex: number = 1
 
@@ -42,10 +62,14 @@ export class FarmersListPageComponent implements OnInit {
     public appService: AppService,
     private _formBuilder: FormBuilder,
     private router: Router,
+    private dialog: MatDialog,
     public afAuth: AngularFireAuth
   ) {
     this.appService.getState().topNavTitle = 'Farmers Directorate'
     this.enterpriseEngagementLevels = this.appService.getEnterpriseEngagementLevels()
+    this.landsDataSource = new MatTableDataSource<Land>(this.currentLandList);
+    this.landsDataSource.paginator = this.landsPaginator;
+    this.landsDataSource.sort = this.landsSort;
   }
 
   ngOnInit() {
@@ -74,8 +98,8 @@ export class FarmersListPageComponent implements OnInit {
       postalStreetCtrl: new FormControl('', Validators.required),
     })
 
-    this.secondFormGroup = new FormGroup({
-      secondCtrl: new FormControl('', Validators.required),
+    this.enterprisesFormGroup = new FormGroup({
+      // secondCtrl: new FormControl('', Validators.required),
     })
 
     // Observes IsAbsenteeFarmer Control
@@ -89,7 +113,7 @@ export class FarmersListPageComponent implements OnInit {
     })
 
     this.appService.getFarmers().subscribe(
-      function(data) {
+      function (data) {
         self.farmers = data
 
         console.log('Farmers ', data)
@@ -109,6 +133,9 @@ export class FarmersListPageComponent implements OnInit {
       this.loadingIndicator = false
     }, 2500)
   }
+  applyLandFilter(filterValue: string) {
+    this.landsDataSource.filter = filterValue.trim().toLowerCase()
+  }
 
   addEnterpriseEngagment() {
     var item = {
@@ -123,8 +150,6 @@ export class FarmersListPageComponent implements OnInit {
     } else {
       this.currentEngagementList.push(item)
     }
-
-    console.log(this.currentEngagementList)
   }
 
   removeEnterpriseEngagement(item: EnterpriseEngagement) {
@@ -132,9 +157,9 @@ export class FarmersListPageComponent implements OnInit {
     this.appService.openSnackBar('Removed', 'Done')
   }
 
-  updateFilter(event) {}
+  updateFilter(event) { }
 
-  proceedFromPersonalDetails() {}
+  proceedFromPersonalDetails() { }
 }
 
 export const farmerTableColumnNames = [

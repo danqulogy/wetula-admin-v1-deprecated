@@ -249,8 +249,8 @@
                   </div>
                 </form>
               </mat-step>
-              <mat-step style="height: 1200px" [stepControl]="secondFormGroup">
-                <form [formGroup]="secondFormGroup">
+              <mat-step style="height: 1200px" [stepControl]="enterprisesFormGroup">
+                <form [formGroup]="enterprisesFormGroup">
                   <ng-template matStepLabel>
                     <span>
                       <i class="fa fa-cubes"></i> Enterprise
@@ -301,13 +301,86 @@
 
                   </div>
                   <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
-                    <button mat-button color="accent" matStepperPrevious>Back</button>
-                    <button mat-button color="accent" matStepperNext>Next</button>
+                    <button mat-raised-button color="accent" matStepperPrevious>
+                      <i class="fa fa-chevron-left"></i> Previous</button>
+                    <button [disabled]="this.currentEngagementList.length ==0" mat-raised-button color="accent" matStepperNext>Next
+                      <i class="fa fa-chevron-right"></i>
+                    </button>
                   </div>
                 </form>
               </mat-step>
               <mat-step label="Land Parcels">
-                Content 3
+                <ng-template matStepLabel>
+                  <span>
+                    <i class="fa fa-cubes"></i> Land Parcels
+                  </span>
+                </ng-template>
+
+                <div fxLayout="column">
+                  <div fxLayout="row" fxFlex="100%">
+                    <div fxFlex="60%" class="mt-2 text-bold {{appService.getState().titleColor1}}">
+                      <input class="mt-2" type="search" data-role="search" (keyup)="applyFilter($event.target.value)" placeholder="Search...">
+                    </div>
+
+                    <div fxFlex="40%" fxLayout="row" fxLayoutAlign="end end">
+
+                      <button class="ml-2 w-100 mt-2" (click)="openAddDialog()" mat-stroked-button>
+                        <i class="fa fa-plus"></i> Add new Enterprise
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mat-elevationn-z8 ">
+                    <table mat-table matSort mat-elevation-z8 class="w-100" [dataSource]="landsDataSource">
+
+
+                      <ng-container matColumnDef="address">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+                        <td mat-cell *matCellDef="let e"> {{e.address}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="size_area">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Size </th>
+                        <td mat-cell *matCellDef="let e"> {{e.size_area}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="region">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Region </th>
+                        <td mat-cell *matCellDef="let e"> {{e.region}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="district">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> District </th>
+                        <td mat-cell *matCellDef="let e"> {{e.district}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="locality">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Locality </th>
+                        <td mat-cell *matCellDef="let e"> {{e.locality}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="tenureship_model">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tenureship Model </th>
+                        <td mat-cell *matCellDef="let e"> {{e.address}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let e">
+                          <button (click)="openEditDialog(e)" mat-stroked-button color="primary" class="m-1">
+                            <i class="fa fa-remove"></i> Edit</button>
+                          <button (click)="openDeleteDialog(e)" mat-stroked-button color="warn" class="m-1">
+                            <i class="fa fa-edit"></i> Delete</button>
+                        </td>
+                      </ng-container>
+
+                      <tr mat-header-row *matHeaderRowDef="landColumns; sticky: true"></tr>
+                      <tr mat-row *matRowDef="let row; columns: landColumns;"></tr>
+
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                  </div>
+                </div>
+                <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
+                  <button mat-raised-button color="accent" matStepperPrevious>
+                    <i class="fa fa-chevron-left"></i> Previous</button>
+                  <button [disabled]="this.currentEngagementList.length ==0" mat-raised-button color="accent" matStepperNext>Next
+                    <i class="fa fa-chevron-right"></i>
+                  </button>
+                </div>
               </mat-step>
               <mat-step label="Bank Info">
                 Content 4
