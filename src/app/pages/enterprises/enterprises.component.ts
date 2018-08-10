@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AddEnterpriseDialogComponent } from '../../dialogs/add-enterprise-dialog/add-enterprise-dialog.component';
-import { DeleteEnterpriseDialogComponent } from '../../dialogs/delete-enterprise-dialog/delete-enterprise-dialog.component';
-import { EditEnterpriseDialogComponent } from '../../dialogs/edit-enterprise-dialog/edit-enterprise-dialog.component';
-import { Enterprise } from '../../models/core/enterprise';
-import { AppService } from '../../services/app.service';
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material'
+import { AngularFireAuth } from 'angularfire2/auth'
+import { AddEnterpriseDialogComponent } from '../../dialogs/add-enterprise-dialog/add-enterprise-dialog.component'
+import { DeleteEnterpriseDialogComponent } from '../../dialogs/delete-enterprise-dialog/delete-enterprise-dialog.component'
+import { EditEnterpriseDialogComponent } from '../../dialogs/edit-enterprise-dialog/edit-enterprise-dialog.component'
+import { Enterprise } from '../../models/core/enterprise'
+import { AppService } from '../../services/app.service'
 
 @Component({
   selector: 'app-enterprises',

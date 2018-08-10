@@ -29,7 +29,9 @@ import { TableModule } from 'primeng/table'
 import { environment } from '../environments/environment'
 import { ROUTES } from './app.router'
 import { AddEnterpriseDialogComponent } from './dialogs/add-enterprise-dialog/add-enterprise-dialog.component'
+import { AddLandDialogComponent } from './dialogs/add-land-dialog/add-land-dialog.component'
 import { DeleteEnterpriseDialogComponent } from './dialogs/delete-enterprise-dialog/delete-enterprise-dialog.component'
+import { DeleteLandDialogComponent } from './dialogs/delete-land-dialog/delete-land-dialog.component'
 import { EditEnterpriseDialogComponent } from './dialogs/edit-enterprise-dialog/edit-enterprise-dialog.component'
 import { DialogThemeComponent } from './dialogs/theme-dialog/dialog-theme.component'
 import { MaterialModule } from './modules/material.module'
@@ -50,6 +52,8 @@ import { FormErrorMatcher } from './services/error.matcher'
     AddEnterpriseDialogComponent,
     EditEnterpriseDialogComponent,
     DeleteEnterpriseDialogComponent,
+    AddLandDialogComponent,
+    DeleteLandDialogComponent,
     FarmersListPageComponent,
     EnterprisesComponent,
   ],
@@ -92,6 +96,8 @@ import { FormErrorMatcher } from './services/error.matcher'
     AddEnterpriseDialogComponent,
     EditEnterpriseDialogComponent,
     DeleteEnterpriseDialogComponent,
+    AddLandDialogComponent,
+    DeleteLandDialogComponent,
   ],
 })
 export class AppModule {}

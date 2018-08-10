@@ -4,6 +4,8 @@ import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/m
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as _ from 'underscore';
+import { AddLandDialogComponent } from '../../dialogs/add-land-dialog/add-land-dialog.component';
+import { DeleteLandDialogComponent } from '../../dialogs/delete-land-dialog/delete-land-dialog.component';
 import { EnterpriseEngagement } from '../../models/assistive/enterprise_engagement';
 import { Land } from '../../models/assistive/land';
 import { Enterprise } from '../../models/core/enterprise';
@@ -34,16 +36,16 @@ export class FarmersListPageComponent implements OnInit {
   selectedEngagementLevel: string
   currentEngagementList: EnterpriseEngagement[] = []
 
-  landColumns = ['address', 'size_area', 'region', 'district', 'locality', 'tenureship_model', 'actions']
-  currentLandList: Land[] = [
-    {
-      address: "Asaasebonano",
-      size_area: "20 Acres",
-      region: "Ashanti",
-      district: "Ejura-Sekyedumase",
-      locality: "Broadcasting"
-    }
+  landColumns = [
+    'address',
+    'size_area',
+    'region',
+    'district',
+    'locality',
+    'tenureship_model',
+    'actions',
   ]
+  currentLandList: Land[] = []
   selectedLand: Land
   landsDataSource
 
@@ -67,9 +69,9 @@ export class FarmersListPageComponent implements OnInit {
   ) {
     this.appService.getState().topNavTitle = 'Farmers Directorate'
     this.enterpriseEngagementLevels = this.appService.getEnterpriseEngagementLevels()
-    this.landsDataSource = new MatTableDataSource<Land>(this.currentLandList);
-    this.landsDataSource.paginator = this.landsPaginator;
-    this.landsDataSource.sort = this.landsSort;
+    this.landsDataSource = new MatTableDataSource<Land>(this.currentLandList)
+    this.landsDataSource.paginator = this.landsPaginator
+    this.landsDataSource.sort = this.landsSort
   }
 
   ngOnInit() {
@@ -135,6 +137,43 @@ export class FarmersListPageComponent implements OnInit {
   }
   applyLandFilter(filterValue: string) {
     this.landsDataSource.filter = filterValue.trim().toLowerCase()
+  }
+
+  openDeleteLandDialog(land: Land) {
+    var self = this
+
+    this.appService.selectedLand = land
+    const dialogRef = this.dialog.open(DeleteLandDialogComponent)
+    dialogRef.afterClosed().subscribe(() => {
+      if (self.appService.landRemovalToken) {
+
+        self.currentLandList = _.without(this.currentLandList, land)
+        this.appService.openSnackBar('Removed', 'Done')
+
+        self.landsDataSource = new MatTableDataSource<Land>(self.currentLandList)
+        self.landsDataSource.paginator = self.landsPaginator
+        self.landsDataSource.sort = self.landsSort
+        console.log(self.appService.selectedLand)
+        console.log(self.currentLandList.length)
+      }
+    })
+
+  }
+
+  openAddLandDialog() {
+    var self = this
+    const dialogRef = this.dialog.open(AddLandDialogComponent)
+    dialogRef.afterClosed().subscribe(() => {
+      if (self.appService.selectedLand != null) {
+        self.currentLandList.push(self.appService.selectedLand)
+        self.enterpriseEngagementLevels = self.appService.getEnterpriseEngagementLevels()
+        self.landsDataSource = new MatTableDataSource<Land>(self.currentLandList)
+        self.landsDataSource.paginator = self.landsPaginator
+        self.landsDataSource.sort = self.landsSort
+        console.log(self.appService.selectedLand)
+        console.log(self.currentLandList.length)
+      }
+    })
   }
 
   addEnterpriseEngagment() {

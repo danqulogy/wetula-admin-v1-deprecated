@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Notifier } from '../core/notifications/notifier';
 import { InternalStateType } from '../interfaces/InternalStateType';
+import { Land } from '../models/assistive/land';
 import { Enterprise } from '../models/core/enterprise';
 import { Farmer } from '../models/core/farmer';
 
@@ -32,6 +33,10 @@ export class AppService {
     titleColor2: 'fg-darkGreen',
   }
   selectedEnterprise: Enterprise = null
+  selectedLand: Land = null
+  temporalLandList: Land[] = []
+  landRemovalToken: boolean;
+
   private farmersSource$: Observable<DocumentChangeAction<Farmer>[]>
   private enterpriseCollection: AngularFirestoreCollection<Enterprise>
   private enterprisesSource$: Observable<DocumentChangeAction<Enterprise>[]>
@@ -53,6 +58,25 @@ export class AppService {
     return ['Major', 'Minor']
   }
 
+  addToCurrentLandList(land: Land) {
+    this.temporalLandList.push(land)
+  }
+
+  getRegions() {
+    return [
+      'Ashanti',
+      'Brong Ahafo',
+      'Central',
+      'Western',
+      'Eastern',
+      'Greater',
+      'Volta',
+      'Norther',
+      'Upper East',
+      'Upper West',
+    ]
+  }
+
   getEnterpriseEngagements() {
     return this.enterprisesSource$.pipe(
       map(actions =>
@@ -65,7 +89,7 @@ export class AppService {
     )
   }
   addEnterprise(enterprise: Enterprise) {
-    return this.enterpriseCollection.add(enterprise);
+    return this.enterpriseCollection.add(enterprise)
   }
 
   updateEnterpriseDetail(enterprise: Enterprise) {

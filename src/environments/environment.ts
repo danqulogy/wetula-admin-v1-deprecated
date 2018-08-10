@@ -10,12 +10,12 @@ export const environment = {
     clientSecret: 'catbqayd',
   },
   firebase: {
-    apiKey: 'AIzaSyDeqQXIGaDFZkjwasZrZjWsgs9mqMaxI6s',
-    authDomain: 'wetula-dev.firebaseapp.com',
-    databaseURL: 'https://wetula-dev.firebaseio.com',
-    projectId: 'wetula-dev',
+    apiKey: 'AIzaSyCChJllvv5tRr0nBua3grB92YBiLHiwszQ',
+    authDomain: 'wetula-test.firebaseapp.com',
+    databaseURL: 'https://wetula-test.firebaseio.com',
+    projectId: 'wetula-test',
     storageBucket: '',
-    messagingSenderId: '827052164552',
+    messagingSenderId: '850831158484',
   },
 }
 

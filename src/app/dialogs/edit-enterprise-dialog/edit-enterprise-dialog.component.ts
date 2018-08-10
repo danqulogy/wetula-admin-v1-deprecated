@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { AppService } from '../../services/app.service';
+import { Component, OnInit } from '@angular/core'
+import { MatDialogRef } from '@angular/material'
+import { AppService } from '../../services/app.service'
 
 @Component({
   templateUrl: './edit-enterprise-dialog.component.html',
@@ -16,7 +16,7 @@ export class EditEnterpriseDialogComponent implements OnInit {
     this.selectedEnterpriseName = appService.selectedEnterprise.name
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   updateEnterprise() {
     this.appService.selectedEnterprise.name = this.selectedEnterpriseName

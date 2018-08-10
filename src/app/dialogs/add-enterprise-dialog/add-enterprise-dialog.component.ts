@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { Enterprise } from '../../models/core/enterprise';
-import { AppService } from '../../services/app.service';
+import { Component, OnInit } from '@angular/core'
+import { MatDialogRef } from '@angular/material'
+import { Enterprise } from '../../models/core/enterprise'
+import { AppService } from '../../services/app.service'
 
 @Component({
   templateUrl: './add-enterprise-dialog.component.html',
@@ -13,18 +13,19 @@ export class AddEnterpriseDialogComponent implements OnInit {
   constructor(
     public appService: AppService,
     private dialogRef: MatDialogRef<AddEnterpriseDialogComponent>
-  ) {
-  }
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   addEnterprise() {
-    var newEnterprise: Enterprise = { name: this.enterpriseName };
-    this.appService.addEnterprise(newEnterprise).then((value) => {
-      this.appService.openSnackBar(this.enterpriseName + ' has been added succesfully', 'Done')
+    var newEnterprise: Enterprise = { name: this.enterpriseName }
+    this.appService.addEnterprise(newEnterprise).then(value => {
+      this.appService.openSnackBar(
+        this.enterpriseName + ' has been added succesfully',
+        'Done'
+      )
     })
-    this.close();
-
+    this.close()
   }
   close() {
     this.dialogRef.close()

@@ -1,0 +1,44 @@
+<form #addEnterpriseForm=ngForm class="settings-dialog">
+  <h1 class="text-light" mat-dialog-title>
+    <i class="fa fa-plus"></i>Add a New Land Parcel</h1>
+  <div mat-dialog-content>
+    <mat-form-field class="w-100">
+      <input matInput name="address" required [(ngModel)]="address" placeholder="Address">
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <input matInput name="size" required [(ngModel)]="sizeArea" placeholder="Size/Area">
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-select placeholder="Region" name="region" [(ngModel)]="region" required>
+        <mat-option>--- Select Region ---</mat-option>
+        <mat-option *ngFor="let r of regions" [value]="r">
+          {{r}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <input matInput name="district" required [(ngModel)]="district" placeholder="District">
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <input matInput name="locality" required [(ngModel)]="locality" placeholder="locality">
+    </mat-form-field>
+    <mat-form-field class="w-100">
+      <mat-select placeholder="Applicable Tenureship models" name="tenureshipModels" required [(ngModel)]="tenureshipModels" multiple>
+        <mat-option *ngFor="let t of tenureCodes" [value]="t">{{t}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-divider style="margin-top: 8px; margin-bottom: 8px"></mat-divider>
+
+    <button [disabled]="addEnterpriseForm.invalid" type="submit" (click)="addEnterprise()" class="w-100" color="primary" mat-raised-button>
+      <span class="fa fa-save"></span> Add Land
+    </button>
+
+    <button (click)="closeForm()" class="mt-2 w-100" color="warn" mat-raised-button>
+      <span class="mif mif-cancel"></span> Close
+    </button>
+
+
+    <br>
+  </div>
+</form>
