@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { AppService } from '../../services/app.service';
+import { Component, OnInit } from '@angular/core'
+import { MatDialogRef } from '@angular/material'
+import { AppService } from '../../services/app.service'
 
 @Component({
   templateUrl: './delete-land-dialog.component.html',
@@ -11,20 +11,19 @@ export class DeleteLandDialogComponent implements OnInit {
 
   constructor(
     public appService: AppService,
-    private dialogRef: MatDialogRef<DeleteLandDialogComponent>) {
+    private dialogRef: MatDialogRef<DeleteLandDialogComponent>
+  ) {}
 
-  }
-
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   deleteEnterprise() {
     var self = this
-    this.appService.landRemovalToken = true;
-    this.dialogRef.close();
+    this.appService.landRemovalToken = true
+    this.dialogRef.close()
   }
 
   close() {
-    this.appService.landRemovalToken = false;
+    this.appService.landRemovalToken = false
     this.dialogRef.close()
   }
 }

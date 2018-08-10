@@ -95,7 +95,7 @@
             </div>
           </mat-toolbar>
           <mat-card-content>
-            <mat-horizontal-stepper [linear]="false">
+            <mat-horizontal-stepper [linear]="true">
               <ng-template matStepperIcon="edit">
                 <mat-icon>check</mat-icon>
               </ng-template>
@@ -133,7 +133,7 @@
                               <input matInput formControlName="surnameCtrl" placeholder="Surname" required>
                             </mat-form-field>
                             <mat-form-field>
-                              <input matInput formControlName="middleNameCtrl" placeholder="Middle Name" required>
+                              <input matInput formControlName="middleNameCtrl" placeholder="Middle Name">
                             </mat-form-field>
                           </div>
                         </div>
@@ -174,7 +174,7 @@
                               <input matInput formControlName="phoneCtrl" placeholder="Phone number">
                             </mat-form-field>
                           </div>
-                          <div fxLayout="row" [hidden]="true" id="caretaker_info">
+                          <div fxLayout="row" [hidden]="isAbsenteeFarmer" id="caretaker_info">
                             <mat-form-field class="w-50 mr-8">
                               <input matInput formControlName="caretakerNameCtrl" placeholder="Caretaker Name">
                             </mat-form-field>
@@ -207,10 +207,15 @@
                           </div>
                           <div fxLayout="row">
                             <mat-form-field class="w-50 mr-8">
-                              <input matInput formControlName="regionCtrl" placeholder="Region">
+                              <mat-select placeholder="Region" name="region" formControlName="regionCtrl" required>
+                                <mat-option>--- select account type ---</mat-option>
+                                <mat-option *ngFor="let r of regions" [value]="r">
+                                  {{r}}
+                                </mat-option>
+                              </mat-select>
                             </mat-form-field>
                             <mat-form-field class="w-50">
-                              <input matInput formControlName="countryCtrl" placeholder="Country">
+                              <input matInput formControlName="countryCtrl" value="Ghana" placeholder="Country">
                             </mat-form-field>
                           </div>
                         </div>
@@ -220,18 +225,18 @@
                         <div fxLayout="column">
                           <div fxLayout="row">
                             <mat-form-field style="width: 100%" class="mr-8">
-                              <input matInput formControlName="postalOfficeCtrl" placeholder="Town/Village/Settlement">
+                              <input matInput formControlName="postalOfficeCtrl" placeholder="Postal Office Address">
                             </mat-form-field>
                           </div>
                           <div fxLayout="row">
                             <mat-form-field style="width: 100%" class="mr-8">
-                              <input matInput formControlName="postalTownCtrl" placeholder="District/Province">
+                              <input matInput formControlName="postalTownCtrl" placeholder="Postal Town">
                             </mat-form-field>
 
                           </div>
                           <div fxLayout="row">
                             <mat-form-field style="width: 100%" class="mr-8">
-                              <input matInput formControlName="postalStreetCtrl" placeholder="District/Province">
+                              <input matInput formControlName="postalStreetCtrl" placeholder="Postal Street Address">
                             </mat-form-field>
                           </div>
 
@@ -303,7 +308,8 @@
                   <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
                     <button mat-raised-button color="accent" matStepperPrevious>
                       <i class="fa fa-chevron-left"></i> Previous</button>
-                    <button [disabled]="this.currentEngagementList.length ==0" mat-raised-button color="accent" matStepperNext>Next
+                    <button [disabled]="this.currentEngagementList.length ==0" (click)="proceedFromEnterpriseDetails()" mat-raised-button color="accent"
+                      matStepperNext>Next
                       <i class="fa fa-chevron-right"></i>
                     </button>
                   </div>
@@ -384,17 +390,117 @@
                 <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
                   <button mat-raised-button color="accent" matStepperPrevious>
                     <i class="fa fa-chevron-left"></i> Previous</button>
-                  <button [disabled]="this.currentLandList.length ==0" mat-raised-button color="accent" matStepperNext>Next
+                  <button [disabled]="this.currentLandList.length ==0" (click)="proceedFromLandDetails()" mat-raised-button color="accent"
+                    matStepperNext>Next
                     <i class="fa fa-chevron-right"></i>
                   </button>
                 </div>
               </mat-step>
-              <mat-step label="Bank Info">
-                Content 4
+              <mat-step label="Bank Info" [stepControl]="bankInfoForm">
+                <form [formGroup]="bankInfoForm">
+                  <ng-template matStepLabel>
+                    <span>
+                      <i class="fa fa-bank"></i> Bank Information
+                    </span>
+                  </ng-template>
+                  <div class="d-flex">
+
+                    <mat-card class="w-100 ml-4">
+                      <fieldset appearance="outline">
+                        <legend>Bank Information</legend>
+                        <div fxLayout="column">
+                          <div fxLayout="row">
+                            <mat-form-field class="w-50 mr-8">
+                              <mat-select placeholder="Account Type" name="accountType" formControlName="accountTypeCtrl" required>
+                                <mat-option>--- select account type ---</mat-option>
+                                <mat-option *ngFor="let accType of accountTypes" [value]="accType">
+                                  {{accType}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="branchNameCtrl" placeholder="Bank Branch Name">
+                            </mat-form-field>
+                          </div>
+                          <div fxLayout="row">
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="accountNameCtrl" placeholder="Account Name">
+                            </mat-form-field>
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="accountNumberCtrl" placeholder="Account Number">
+                            </mat-form-field>
+                          </div>
+                          <div fxLayout="row">
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="bicSwiftCodeCtrl" placeholder="BIC/ Swift Code">
+                            </mat-form-field>
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="bankNameCtrl" placeholder="Bank Name">
+                            </mat-form-field>
+                          </div>
+                          <div fxLayout="row">
+                            <mat-form-field class="w-50 mr-8">
+                              <input matInput formControlName="branchAddressCtrl" placeholder="Bank Address">
+                            </mat-form-field>
+                            <mat-form-field class="w-50">
+                              <input matInput formControlName="bankPhoneCtrl" placeholder="Bank Telephone Number">
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </fieldset>
+
+                    </mat-card>
+
+                  </div>
+                  <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
+                    <!-- <button mat-raised-button color="accent" type="button" matStepperPrevious>Back</button> -->
+                    <span class="toolbar-filler"></span>
+                    <button mat-raised-button type="button" color="accent" (click)="saveFarmer()" matStepperNext> Register Farmer
+                      <i class="fa fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </form>
               </mat-step>
-              <mat-step label="Finish">
-                Content 5
-              </mat-step>
+              <!-- <mat-step label="Finish">
+                <form>
+                  <ng-template matStepLabel>
+                    <span>
+                      <i class="fa fa-bookmark"></i> Finish
+                    </span>
+                  </ng-template>
+                  <div class="d-flex">
+
+                    <mat-card class="w-100 ml-4">
+                      <fieldset appearance="outline">
+                        <legend>Personal Information</legend>
+                        <div fxLayout="column">
+
+                          <div fxLayout="row">
+                            <mat-form-field class="w-25 mr-8">
+                              <input matInput disabled value="Samuel Akoman" placeholder="Account Name">
+                            </mat-form-field>
+                            <mat-form-field class="w-25 mr-8">
+                              <input matInput disabled value="Samuel Akoman" placeholder="Account Name">
+                            </mat-form-field>
+                            <mat-form-field class="w-25 mr-8">
+                              <input matInput disabled value="Samuel Akoman" placeholder="Account Name">
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                      </fieldset>
+
+                    </mat-card>
+
+                  </div>
+                  <div class="d-flex flex-row flex-justify-between pt-8 pr-8">
+                    <span class="toolbar-filler"></span>
+                    <button mat-raised-button type="button" color="accent" (click)="proceedFromPersonalDetails()" matStepperNext> Continue
+                      <i class="fa fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </form>
+              </mat-step> -->
             </mat-horizontal-stepper>
 
           </mat-card-content>

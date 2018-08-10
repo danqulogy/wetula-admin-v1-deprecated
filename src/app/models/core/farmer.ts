@@ -1,9 +1,9 @@
-import { Gender } from '../../valueObjects/Gender'
-import { CareTaker } from '../assistive/caretaker'
-import { EnterpriseEngagement } from '../assistive/enterprise_engagement'
-import { Land } from '../assistive/land'
-import { PhysicalAddress } from '../assistive/physical_address'
-import { PostalAddress } from '../assistive/postal_address'
+import { BankAccount } from '../assistive/bank_account';
+import { CareTaker } from '../assistive/caretaker';
+import { EnterpriseEngagement } from '../assistive/enterprise_engagement';
+import { Land } from '../assistive/land';
+import { PhysicalAddress } from '../assistive/physical_address';
+import { PostalAddress } from '../assistive/postal_address';
 
 export interface Farmer {
   //Personal
@@ -14,10 +14,9 @@ export interface Farmer {
   first_name: string
   middle_name?: string
   nickname?: string
-  sex: Gender
-  date_of_birth: Date
-  id_type: string
-  id_number: string
+  sex: string
+  date_of_birth: string
+  id_card: IDCard
   is_absentee_farmer: boolean
   phone_number: string
   email: string
@@ -27,11 +26,17 @@ export interface Farmer {
   land_parcels: Land[]
 
   // Location Address
-  physical_address: PhysicalAddress
+  physical_address?: PhysicalAddress
   postal_address?: PostalAddress
 
   // Attachments
-  photograph_url: string
-  applicant_signage_url: string
+  photograph_url?: string
+  applicant_signage_url?: string
   number_of_lands?: number
+  bank_info?: BankAccount
+}
+
+export interface IDCard {
+  type: string;
+  number: string;
 }

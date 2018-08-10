@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
-import { Land } from '../../models/assistive/land';
-import { AppService } from '../../services/app.service';
+import { Component, OnInit } from '@angular/core'
+import { MatDialogRef } from '@angular/material'
+import { Land } from '../../models/assistive/land'
+import { AppService } from '../../services/app.service'
 
 @Component({
   templateUrl: './add-land-dialog.component.html',
@@ -26,7 +26,7 @@ export class AddLandDialogComponent implements OnInit {
     this.dialogRef.disableClose = true
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   addEnterprise() {
     var land: Land = {

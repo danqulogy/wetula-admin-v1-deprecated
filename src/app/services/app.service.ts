@@ -35,15 +35,16 @@ export class AppService {
   selectedEnterprise: Enterprise = null
   selectedLand: Land = null
   temporalLandList: Land[] = []
-  landRemovalToken: boolean;
+  landRemovalToken: boolean
 
   private farmersSource$: Observable<DocumentChangeAction<Farmer>[]>
+  private farmersCollection: AngularFirestoreCollection<Farmer>
   private enterpriseCollection: AngularFirestoreCollection<Enterprise>
   private enterprisesSource$: Observable<DocumentChangeAction<Enterprise>[]>
 
   constructor(private afs: AngularFirestore, private snackBar: MatSnackBar) {
-    this.farmersSource$ = this.afs
-      .collection<Farmer>('farmers')
+    this.farmersCollection = this.afs.collection<Farmer>('farmers');
+    this.farmersSource$ = this.farmersCollection
       .snapshotChanges()
       .pipe(shareReplay(1))
 
@@ -52,6 +53,10 @@ export class AppService {
     this.enterprisesSource$ = this.enterpriseCollection
       .snapshotChanges()
       .pipe(shareReplay(1))
+  }
+
+  getBankAccountTypes() {
+    return ['Current', 'Savings', 'Susu', 'Joint']
   }
 
   getEnterpriseEngagementLevels() {
@@ -98,6 +103,10 @@ export class AppService {
 
   deleteEnterprise(enterprise: Enterprise) {
     return this.enterpriseCollection.doc(enterprise.id).delete()
+  }
+
+  addFarmer(farmer: Farmer) {
+    return this.farmersCollection.add(farmer);
   }
 
   getFarmers() {
@@ -179,4 +188,29 @@ export class AppService {
   public setState(prop: string, value: any) {
     return (this.state[prop] = value)
   }
+
+
 }
+
+export const Countries = [
+  'Aghanistan',
+  'Albania',
+  'Algeria',
+  'Angola',
+  'Antigua',
+  'Argentina',
+  'Australia',
+  'Astria',
+  'Belgium',
+  'Benin',
+  'Bolivia',
+  'Botswana',
+  'Brazil',
+  'Bulgaria',
+  'Burkina Faso',
+  'Burundi',
+  'Cameroon',
+  'Canada',
+
+
+]

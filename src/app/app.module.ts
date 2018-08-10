@@ -41,7 +41,8 @@ import { FarmersListPageComponent } from './pages/farmers-list-page/farmers-list
 import { AppComponent } from './pages/root/app.component'
 import { SigninPageComponent } from './pages/signin/signin-page.component'
 import { AppService } from './services/app.service'
-import { FormErrorMatcher } from './services/error.matcher'
+import { FormErrorMatcher } from './services/error.matcher';
+import { FarmerRegistrationComponent } from './pages/farmer-registration/farmer-registration.component'
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { FormErrorMatcher } from './services/error.matcher'
     DeleteLandDialogComponent,
     FarmersListPageComponent,
     EnterprisesComponent,
+    FarmerRegistrationComponent,
   ],
   imports: [
     BrowserModule,
