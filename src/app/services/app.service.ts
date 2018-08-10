@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
-import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material';
-import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
-import { Notifier } from '../core/notifications/notifier';
-import { InternalStateType } from '../interfaces/InternalStateType';
-import { Land } from '../models/assistive/land';
-import { Enterprise } from '../models/core/enterprise';
-import { Farmer } from '../models/core/farmer';
+import { Injectable } from '@angular/core'
+import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material'
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  DocumentChangeAction,
+} from 'angularfire2/firestore'
+import { Observable } from 'rxjs'
+import { map, shareReplay } from 'rxjs/operators'
+import { Notifier } from '../core/notifications/notifier'
+import { InternalStateType } from '../interfaces/InternalStateType'
+import { Land } from '../models/assistive/land'
+import { Enterprise } from '../models/core/enterprise'
+import { Farmer } from '../models/core/farmer'
 
 declare var $: any
 
@@ -43,10 +47,8 @@ export class AppService {
   private enterprisesSource$: Observable<DocumentChangeAction<Enterprise>[]>
 
   constructor(private afs: AngularFirestore, private snackBar: MatSnackBar) {
-    this.farmersCollection = this.afs.collection<Farmer>('farmers');
-    this.farmersSource$ = this.farmersCollection
-      .snapshotChanges()
-      .pipe(shareReplay(1))
+    this.farmersCollection = this.afs.collection<Farmer>('farmers')
+    this.farmersSource$ = this.farmersCollection.snapshotChanges().pipe(shareReplay(1))
 
     this.enterpriseCollection = this.afs.collection<Enterprise>('enterprises')
 
@@ -106,7 +108,7 @@ export class AppService {
   }
 
   addFarmer(farmer: Farmer) {
-    return this.farmersCollection.add(farmer);
+    return this.farmersCollection.add(farmer)
   }
 
   getFarmers() {
@@ -188,8 +190,6 @@ export class AppService {
   public setState(prop: string, value: any) {
     return (this.state[prop] = value)
   }
-
-
 }
 
 export const Countries = [
@@ -211,6 +211,4 @@ export const Countries = [
   'Burundi',
   'Cameroon',
   'Canada',
-
-
 ]

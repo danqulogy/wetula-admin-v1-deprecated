@@ -1,9 +1,9 @@
-import { BankAccount } from '../assistive/bank_account';
-import { CareTaker } from '../assistive/caretaker';
-import { EnterpriseEngagement } from '../assistive/enterprise_engagement';
-import { Land } from '../assistive/land';
-import { PhysicalAddress } from '../assistive/physical_address';
-import { PostalAddress } from '../assistive/postal_address';
+import { BankAccount } from '../assistive/bank_account'
+import { CareTaker } from '../assistive/caretaker'
+import { EnterpriseEngagement } from '../assistive/enterprise_engagement'
+import { Land } from '../assistive/land'
+import { PhysicalAddress } from '../assistive/physical_address'
+import { PostalAddress } from '../assistive/postal_address'
 
 export interface Farmer {
   //Personal
@@ -37,6 +37,6 @@ export interface Farmer {
 }
 
 export interface IDCard {
-  type: string;
-  number: string;
+  type: string
+  number: string
 }

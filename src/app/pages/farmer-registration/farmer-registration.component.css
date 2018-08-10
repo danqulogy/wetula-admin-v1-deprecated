@@ -1,0 +1,7 @@
+.form-avatar {
+  width: 156px;
+}
+
+mat-form-field>input:disabled {
+  font-weight: bold;
+}

@@ -15,21 +15,17 @@ export class MenuMock {
       name: 'farmers',
       title: 'Farmers',
       faIcon: 'fa-users',
-      notifyClass: 'bg-warn label',
-
       sub: [
         {
           name: 'register_farmer',
           title: 'New Registration',
-          faIcon: 'fa-users',
-          notifyClass: 'bg-warn label',
+          faIcon: 'fa-user-plus',
           link: '/farmers/register',
         },
         {
           name: 'browse_farmers',
-          title: 'Directory',
+          title: 'Farmers Directory',
           faIcon: 'fa-users',
-          notifyClass: 'bg-warn label',
           link: '/farmers',
         },
       ],
