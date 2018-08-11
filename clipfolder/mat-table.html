@@ -1,0 +1,65 @@
+<div class="mat-elevationn-z8 ">
+  <table mat-table matSort mat-elevation-z8 class="w-100" [dataSource]="farmersDataSource">
+
+    <!-- <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container> -->
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let e"> {{e.first_name + " " +e.middle_name + " "+ e.surname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sex">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sex </th>
+      <td mat-cell *matCellDef="let e"> {{e.sex}} </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="date_of_birth">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Birth </th>
+                  <td mat-cell *matCellDef="let e"> 14-11-1993 </td>
+                </ng-container> -->
+    <ng-container matColumnDef="phone_number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+      <td mat-cell *matCellDef="let e"> {{e.phone_number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="is_absentee_farmer">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Is Absentee </th>
+      <td mat-cell *matCellDef="let e"> {{e.is_absentee_farmer}} </td>
+    </ng-container>
+    <ng-container matColumnDef="enterprise_engagements">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Enterprise Engagements </th>
+      <td mat-cell *matCellDef="let e">
+        <mat-chip-list>
+          <mat-chip *ngFor="let item of e.enterprise_engagement">{{item.enterprise_name}}</mat-chip>
+        </mat-chip-list>
+        <!-- <span *ngFor="let item of e.enterprise_engagement">{{item.enterprise_name}}, </span> -->
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let e">
+        <button (click)="openEditDialog(e)" mat-stroked-button color="primary" class="m-1">
+          View profile</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cost">
+      <th mat-header-cell *matHeaderCellDef> Total number of Farmers </th>
+      <td mat-cell *matCellDef="let data"> {{farmers.length}} </td>
+      <td mat-footer-cell *matFooterCellDef> 50000 </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

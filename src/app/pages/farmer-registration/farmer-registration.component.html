@@ -1,14 +1,11 @@
 <div class="page-container">
   <div class="page-content">
-    <mat-card class="page-card">
+    <mat-card *ngIf="!isSubmitted" class="page-card">
       <mat-toolbar>
         <span class="text-bold {{appService.getState().titleColor1}}">
           <i class="fa fa-user-plus example-mat-icon"></i> New Farmer Registration</span>
-
         <span class="toolbar-filler"></span>
-
         <div fxLayout="row">
-
         </div>
       </mat-toolbar>
       <mat-card-content>
@@ -421,6 +418,22 @@
         </mat-horizontal-stepper>
 
       </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isSubmitted" class="signin-block-widget">
+      <mat-card-content class="align-center">
+        <p class="text-center">
+          <i class="fg-green fa fa-spinner fa-spin fa-4x"></i>
+        </p>
+        <h5 class="text-center fg-darkGreen">Registering farmer... Please wait.</h5>
+        <!--<h5 class="text-center fg-darkGreen">While we authenticate your credentials</h5>-->
+        <mat-divider></mat-divider>
+        <br>
+        <p class="text-center fg-black">AilenTech Inc. Copyright &copy; 2018</p>
+      </mat-card-content>
+
+      <mat-card-footer class="mat-card-footer">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </mat-card-footer>
     </mat-card>
   </div>
 </div>

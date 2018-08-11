@@ -13,12 +13,10 @@ import { AppService } from '../../services/app.service'
   styleUrls: ['./enterprises.component.css'],
 })
 export class EnterprisesComponent implements OnInit {
-  columns = EnterpriseTableColumns
   displayedColumns = ['name', 'actions']
   enterprises: Enterprise[]
   selectedEnterprise: Enterprise
   enterpriseFormData: Enterprise
-  first: number = 0
   multiSortMeta
   dataSource
 
@@ -40,7 +38,7 @@ export class EnterprisesComponent implements OnInit {
     this.appService.getEnterpriseEngagements().subscribe(data => {
       self.enterprises = data
       this.dataSource = new MatTableDataSource<Enterprise>(self.enterprises)
-      this.dataSource.paginator = this.paginator
+      this.dataSource.paginator = self.paginator
       this.dataSource.sort = this.sort
     })
   }
@@ -63,13 +61,3 @@ export class EnterprisesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddEnterpriseDialogComponent)
   }
 }
-export const EnterpriseTableColumns = [
-  {
-    field: 'name',
-    header: 'Enterprise Name',
-  },
-  {
-    field: 'id',
-    header: 'Actions',
-  },
-]

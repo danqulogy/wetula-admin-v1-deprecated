@@ -15,36 +15,60 @@
             <span class="toolbar-filler"></span>
 
             <div fxLayout="row">
-              <input type='text' placeholder='Type to filter by creditors name...' (keyup)='updateFilter($event)'>
+              <input type='text' placeholder='Type to filter by creditors name...'>
               <button color="accent" mat-raised-button>
                 <i class="fa fa-file-excel-o"></i>Export
               </button>
             </div>
           </mat-toolbar>
           <mat-card-content class="bg-lightGray">
-            <p-table [autoLayout]="true" [value]="farmers">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th>Applicant No.</th>
-                  <th>Reg. No.</th>
-                  <th>Photo</th>
-                  <th>Name</th>
-                  <th>Sex</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-farmer>
-                <tr>
-                  <td>{{farmer.applicant_number}}</td>
-                  <td>{{farmer.registration_number}}</td>
-                  <td>{{farmer.photograph_url}}</td>
-                  <td>{{farmer.surname + " "+ farmer.first_name}}</td>
-                  <td>{{farmer.sex}}</td>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="summary">
-                There are {{farmers?.length}} farmers
-              </ng-template>
-            </p-table>
+
+            <div class="mat-elevationn-z8 ">
+              <table cdk-table mat-elevation-z8 class="table striped table-responsive row-hover compact row-border cell-border table-border w-100"
+                [dataSource]="farmersDataSource">
+                <ng-container cdkColumnDef="name">
+                  <th cdk-header-cell [ngClass]="{'sortable-column': true, 'sort-asc':'true'}" *cdkHeaderCellDef> Name </th>
+                  <td cdk-cell *cdkCellDef="let e"> {{e.first_name + " " +e.middle_name + " "+ e.surname}} </td>
+                </ng-container>
+                <ng-container cdkColumnDef="sex">
+                  <th cdk-header-cell *cdkHeaderCellDef> Sex </th>
+                  <td cdk-cell *cdkCellDef="let e"> {{e.sex}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="phone_number">
+                  <th cdk-header-cell *cdkHeaderCellDef> Phone Number </th>
+                  <td cdk-cell *cdkCellDef="let e"> {{e.phone_number}} </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="is_absentee_farmer">
+                  <th cdk-header-cell *cdkHeaderCellDef> Is Absentee </th>
+                  <td cdk-cell *cdkCellDef="let e"> {{e.is_absentee_farmer}} </td>
+                </ng-container>
+                <ng-container cdkColumnDef="enterprise_engagements">
+                  <th cdk-header-cell *cdkHeaderCellDef> Enterprise Engagements </th>
+                  <td cdk-cell *cdkCellDef="let e">
+                    <mat-chip-list>
+                      <mat-chip *ngFor="let item of e.enterprise_engagement">{{item.enterprise_name}}</mat-chip>
+                    </mat-chip-list>
+                  </td>
+                </ng-container>
+
+                <ng-container cdkColumnDef="actions">
+                  <th cdk-header-cell *cdkHeaderCellDef> Actions </th>
+                  <td cdk-cell *cdkCellDef="let e">
+                    <button (click)="ViewProfile(e)" mat-stroked-button color="primary" class="m-1">
+                      View profile</button>
+                  </td>
+                </ng-container>
+
+
+                <tr cdk-header-row *cdkHeaderRowDef="displayedColumns.value"></tr>
+                <tr cdk-row [ngClass]="{'bg-orange': false}" *cdkRowDef="let row; columns: displayedColumns.value;"></tr>
+
+              </table>
+            </div>
+
+
           </mat-card-content>
         </mat-card>
       </div>

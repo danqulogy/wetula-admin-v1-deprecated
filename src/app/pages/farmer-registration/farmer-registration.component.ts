@@ -1,17 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as _ from 'underscore';
-import { AddLandDialogComponent } from '../../dialogs/add-land-dialog/add-land-dialog.component';
-import { DeleteLandDialogComponent } from '../../dialogs/delete-land-dialog/delete-land-dialog.component';
-import { EnterpriseEngagement } from '../../models/assistive/enterprise_engagement';
-import { Land } from '../../models/assistive/land';
-import { Enterprise } from '../../models/core/enterprise';
-import { Farmer } from '../../models/core/farmer';
-import { AppService } from '../../services/app.service';
-import { farmerTableColumnNames } from '../farmers-list-page/farmers-list-page.component';
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material'
+import { Router } from '@angular/router'
+import { AngularFireAuth } from 'angularfire2/auth'
+import * as _ from 'underscore'
+import { AddLandDialogComponent } from '../../dialogs/add-land-dialog/add-land-dialog.component'
+import { DeleteLandDialogComponent } from '../../dialogs/delete-land-dialog/delete-land-dialog.component'
+import { EnterpriseEngagement } from '../../models/assistive/enterprise_engagement'
+import { Land } from '../../models/assistive/land'
+import { Enterprise } from '../../models/core/enterprise'
+import { Farmer } from '../../models/core/farmer'
+import { AppService } from '../../services/app.service'
 
 @Component({
   selector: 'app-farmer-registration',
@@ -23,11 +22,6 @@ export class FarmerRegistrationComponent implements OnInit {
   landsPaginator: MatPaginator
   @ViewChild(MatSort)
   landsSort: MatSort
-
-  // Farmers Listings
-  columns = farmerTableColumnNames
-
-  // Farmer registration
   farmers: Farmer[]
   enterprises: Enterprise[]
   enterpriseEngagementLevels: string[]
@@ -49,7 +43,6 @@ export class FarmerRegistrationComponent implements OnInit {
   selectedLand: Land
   landsDataSource
 
-  loadingIndicator = true
   genders = ['Male', 'Female']
   ids = ['Ghana Card', 'Voters', 'NHIS']
   isAbsenteeFarmer = false
@@ -58,7 +51,6 @@ export class FarmerRegistrationComponent implements OnInit {
   enterprisesFormGroup: FormGroup
   bankInfoForm: FormGroup
   regions: string[]
-  activeIndex: number = 1
 
   accountTypes: string[]
   farmerFormData: Farmer = {
@@ -98,6 +90,8 @@ export class FarmerRegistrationComponent implements OnInit {
       branch_name: '',
     },
   }
+  isSubmitted = false
+
   constructor(
     public appService: AppService,
     private _formBuilder: FormBuilder,
@@ -174,7 +168,7 @@ export class FarmerRegistrationComponent implements OnInit {
     })
 
     this.appService.getFarmers().subscribe(
-      function (data) {
+      function(data) {
         self.farmers = data
 
         console.log('Farmers ', data)
@@ -187,12 +181,6 @@ export class FarmerRegistrationComponent implements OnInit {
 
   initialize() {
     this.appService.getState().topnavTitle = 'Farmers Directorate'
-
-    this.farmerFormData = null
-
-    setTimeout(() => {
-      this.loadingIndicator = false
-    }, 2500)
   }
   applyLandFilter(filterValue: string) {
     this.landsDataSource.filter = filterValue.trim().toLowerCase()
@@ -253,8 +241,6 @@ export class FarmerRegistrationComponent implements OnInit {
     this.appService.openSnackBar('Removed', 'Done')
   }
 
-  updateFilter(event) { }
-
   proceedFromPersonalDetails() {
     this.farmerFormData.first_name = this.personalFormGroup.controls[
       'firstNameCtrl'
@@ -308,6 +294,8 @@ export class FarmerRegistrationComponent implements OnInit {
       'postalStreetCtrl'
     ].value
 
+    this.farmerFormData.phone_number = this.personalFormGroup.controls['phoneCtrl'].value
+
     console.log(this.farmerFormData)
   }
 
@@ -354,11 +342,12 @@ export class FarmerRegistrationComponent implements OnInit {
         'bankPhoneCtrl'
       ].value
       console.log(this.farmerFormData)
-
+      this.isSubmitted = true
       this.appService.addFarmer(this.farmerFormData).then(value => {
         self.appService.openSnackBar('Farmer registered successfully', 'Done')
+        self.isSubmitted = false
       })
-      this.router.navigateByUrl('farmers');
+      this.router.navigateByUrl('farmers')
     }
   }
 }
