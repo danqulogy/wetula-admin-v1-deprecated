@@ -49,9 +49,7 @@ export class AppService {
   constructor(private afs: AngularFirestore, private snackBar: MatSnackBar) {
     this.farmersCollection = this.afs.collection<Farmer>('farmers')
     this.farmersSource$ = this.farmersCollection.snapshotChanges().pipe(shareReplay(1))
-
     this.enterpriseCollection = this.afs.collection<Enterprise>('enterprises')
-
     this.enterprisesSource$ = this.enterpriseCollection
       .snapshotChanges()
       .pipe(shareReplay(1))

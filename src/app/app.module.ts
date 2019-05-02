@@ -71,7 +71,7 @@ import { FarmerRegistrationComponent } from './pages/farmer-registration/farmer-
     ButtonModule,
     CdkTableModule,
     HttpClientModule,
-    FlexLayoutModule,
+    // FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule.enablePersistence(),
     MaterialModule,

@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
     private _dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {
+    this.toggleFullscreen()
     this.appService = _appService
     this.router = _router
     this.dialog = _dialog
